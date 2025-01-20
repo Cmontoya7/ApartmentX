@@ -11,7 +11,7 @@ public class HomeController
 	
 	@GetMapping("/")
     public String display(Model model) 
-    {   
-        return "homepage";
+    {
+        return "Homepage";
     }
 }

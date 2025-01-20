@@ -2,7 +2,7 @@ package com.gcu.apartmentx.controllers;
 
 
 import javax.validation.Valid;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,21 +26,23 @@ public class LoginController
         model.addAttribute("loginModel", new LoginModel());
 
         // Return the view name "login"
-        return "login";
+        return "Login";
     }
     
     @PostMapping("/doLogin")
-    public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) 
+    public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model, HttpSession session)
     {
         // Check for submission errors
     	if (bindingResult.hasErrors())
     	{
     		model.addAttribute("title", "Login Form");
-    		return "login";
+    		return "Login";
     	}
 
         // Return the view name for orders
-        return "homepage";
+        System.out.println("received Login: " + loginModel.toString());
+        session.setAttribute("username", loginModel.getUsername());
+        return "Homepage";
     }
 
 }
