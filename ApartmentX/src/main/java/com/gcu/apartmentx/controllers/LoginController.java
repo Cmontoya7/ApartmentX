@@ -1,6 +1,7 @@
 package com.gcu.apartmentx.controllers;
 
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class LoginController
     }
     
     @PostMapping("/doLogin")
-    public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) 
+    public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model, HttpSession session) 
     {
         // Check for submission errors
     	if (bindingResult.hasErrors())
@@ -38,7 +39,7 @@ public class LoginController
     		model.addAttribute("title", "Login Form");
     		return "login";
     	}
-
+    	session.setAttribute("username", loginModel.getUsername());
         // Return the view name for orders
         return "homepage";
     }
