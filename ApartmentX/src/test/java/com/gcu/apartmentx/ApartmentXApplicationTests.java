@@ -1,13 +1,13 @@
-package com.gcu.appartmentx;
+package com.gcu.apartmentx;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AppartmentXApplicationTests {
+class ApartmentXApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }

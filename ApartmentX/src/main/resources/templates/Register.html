@@ -1,12 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <title>Register</title>
-  </head>
-  <body>
-    <h1>Register</h1>
-	Hello world!
-    
-  </body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div th:align="center">
+    <h1>Registration</h1>
+    <form th:action="@{/register/submitRegistration}" method="post">
+      <table>
+        <tr>
+          <!-- UserName Input -->
+          <td><label for="username">Username:</label></td>
+          <td><input type="text" id="username" name="username" placeholder="Enter your Username" required></td>
+        </tr>
+        <tr>
+          <!-- Email Input -->
+          <td><label for="email">Email:</label></td>
+          <td><input type="email" id="email" name="email" placeholder="Enter your email" required></td>
+        </tr>
+        <tr>
+          <!-- Password Input -->
+          <td><label for="password">Password:</label></td>
+          <td><input type="password" id="password" name="password" placeholder="Enter your Password" required></td>
+        </tr>
+        <tr>
+          <!-- Password Confirm -->
+          <td><label for="password-confirm">Confirm:</label></td>
+          <td><input type="password" id="password-confirm" name="password-confirm" placeholder="Re-type your password" required></td>
+        </tr>
+        <tr>
+          <!-- First Name -->
+          <td><label for="name-first">First Name:</label></td>
+          <td><input type="text" id="name-first" name="nameFirst" placeholder="Enter your first name" required></td>
+        </tr>
+        <tr>
+          <!-- Last Name -->
+          <td><label for="name-last">Last Name:</label></td>
+          <td><input type="text" id="name-last" name="nameLast" placeholder="Enter your last name" required></td>
+        </tr>
+        <tr>
+          <!-- Submit Button -->
+          <td><button type="submit">Submit</button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
 </html>
