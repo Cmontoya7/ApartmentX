@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
     <body>
         <div layout:fragment="content" class="container mt-5">
@@ -7,3 +8,17 @@
         </div>
     </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+      <head>
+          <meta charset="UTF-8">
+          <title>Welcome to ApartmentX</title>
+      </head>
+      <body>
+            <h3 th:text="${message}">Message goes here</h3>
+            <a th:href = "@{/login}">Login</a></br>
+            <a th:href = "@{/register}">Register</a>
+      </body>
+</html>
+>>>>>>> indev

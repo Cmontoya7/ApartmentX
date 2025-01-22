@@ -1,24 +1,25 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
-	<body>
-	    <div class="container mt-5">
-	        <div layout:fragment="content" style="max-width: 350px;">
-	            <form action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post">
-	                <div class="form-group">
-	                    <label for="username">Username:</label>
-	                    <input type="text" id="username" class="form-control w-50" th:field="*{username}">
-	                    <h5 style="color: red;" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</h5>
-	                </div>
-	                <div class="form-group">
-	                    <label for="password">Password:</label>
-	                    <input type="password" id="password" class="form-control w-50" th:field="*{password}">
-	                    <h5 style="color: red;" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</h5>
-	                </div>
-	                <div class="form-group">
-	                    <button type="submit" class="btn btn-primary">Submit</button>
-	                </div>
-	            </form>
-	        </div>
-	    </div>
-	</body>
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Login</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form action="#" th:action="@{doLogin}" th:object="${loginModel}" method="post">
+        <form th:action="@{/register/submitRegistration}" method="post">
+            <!-- Email Input -->
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+            <!-- Password Input -->
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        <div th:if="${#fields.hasErrors('*')}">List of Errors</div>
+        <div th:each="err : ${#fields.errors('*')}">
+            <span style="color:red" th:text="${err}" class="fieldError"></span>
+        </div>
+    </form>
+  </body>
 </html>
