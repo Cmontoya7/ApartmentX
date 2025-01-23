@@ -8,7 +8,9 @@ import java.util.List;
 
 @Service
 public class AuthenticationBean {
-    public boolean authenticate(String username, String password) {
+    public boolean result = false;
+
+    public String authenticate(String username, String password) {
 
         //Psuedo-Database for users
         List<ApartmentXUser> userList = new LinkedList<>();
@@ -19,26 +21,27 @@ public class AuthenticationBean {
         userList.add(new ApartmentXUser("username5", "email5@email.com", "testword5", "user5", "name5"));
 
         //Authentication of Username and Password
-        boolean result = false;
+        String msg = "message null";
         boolean userExists = false;
         boolean passwordMatch = false;
         for (ApartmentXUser user : userList) {
             if (user.getUsername().equals(username)){
                 userExists = true;
-                System.out.println("Username match: " + username);
+                msg = "Username match: " + username;
                 if (user.getPassword().equals(password)){
                     passwordMatch = true;
-                    System.out.println("Password match: " + password);
+                    msg ="Password match: " + password;
                     result = true;
                     break;
                 }
             }
         }
         if (!userExists) {
-            System.out.println("Username does not exist: " + username);
+            msg ="Username does not exist: " + username;
         } else if (!passwordMatch) {
-            System.out.println("Password did not match: " + password);
+            msg ="Password did not match";
         }
-        return result;
+        System.out.println(msg);
+        return msg;
     }
 }
