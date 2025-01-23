@@ -36,11 +36,13 @@ public class AuthenticationBean {
                 }
             }
         }
+        //Error message for failed loggin.
         if (!userExists) {
             msg ="Username does not exist: " + username;
         } else if (!passwordMatch) {
             msg ="Password did not match";
         }
+        //Print any message for testing purposes
         System.out.println(msg);
         return msg;
     }

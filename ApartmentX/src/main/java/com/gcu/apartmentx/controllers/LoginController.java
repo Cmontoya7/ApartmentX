@@ -35,10 +35,11 @@ public class LoginController
     
     @PostMapping("/doLogin")
     public String doLogin(@Valid LoginModel loginModel, Model model, HttpSession session) {
-        // Check for submission errors
+        // Check for submission errors and retrieve any error messages
         String msg = authentication.authenticate(loginModel.getUsername(), loginModel.getPassword());
         if (!authentication.result){
             model.addAttribute("title", "Login Form");
+            //send the error message to the html
             model.addAttribute("message", msg);
             return "Login";
         } else {
