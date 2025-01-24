@@ -3,9 +3,11 @@ package com.gcu.apartmentx.controllers;
 
 import javax.validation.Valid;
 import javax.servlet.http.HttpSession;
+
+import com.gcu.apartmentx.business.AuthenticationBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.gcu.apartmentx.models.LoginModel;
@@ -13,6 +15,8 @@ import com.gcu.apartmentx.models.LoginModel;
 @Controller
 public class LoginController
 {
+    @Autowired
+    private AuthenticationBean authentication = new AuthenticationBean();
 	/**
      * Handles GET requests to the root URI and sets up the model
      */
@@ -30,19 +34,19 @@ public class LoginController
     }
     
     @PostMapping("/doLogin")
-    public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model, HttpSession session)
-    {
-        // Check for submission errors
-    	if (bindingResult.hasErrors())
-    	{
-    		model.addAttribute("title", "Login Form");
-    		return "Login";
-    	}
-
-        // Return the view name for orders
-        System.out.println("received Login: " + loginModel.toString());
-        session.setAttribute("username", loginModel.getUsername());
-        return "Homepage";
+    public String doLogin(@Valid LoginModel loginModel, Model model, HttpSession session) {
+        // Check for submission errors and retrieve any error messages
+        String msg = authentication.authenticate(loginModel.getUsername(), loginModel.getPassword());
+        if (!authentication.result){
+            model.addAttribute("title", "Login Form");
+            //send the error message to the html
+            model.addAttribute("message", msg);
+            return "Login";
+        } else {
+            // Return the view name for orders
+            session.setAttribute("username", loginModel.getUsername());
+            return "Homepage";
+        }
     }
 
 }

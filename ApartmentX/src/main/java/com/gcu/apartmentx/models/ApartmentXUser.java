@@ -7,6 +7,14 @@ public class ApartmentXUser {
     private String nameFirst;
     private String nameLast;
 
+    public ApartmentXUser(String username, String email, String password, String nameFirst, String nameLast) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.nameFirst = nameFirst;
+        this.nameLast = nameLast;
+    }
+
     public String getEmail() {
         return email;
     }
