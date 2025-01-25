@@ -1,0 +1,33 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Apartment</title>
+</head>
+<body>
+<div layout:fragment="content" class="container mt-5">
+  <h1>Add New Apartment</h1>
+  <form th:action="@{/create/submit}" method="post">
+    <!-- Username -->
+    <label for="name">Title:</label><br>
+    <input type="text" id="name" name="name" placeholder="Enter the Title" required><br><br>
+    <!-- Email Input -->
+    <label for="beds">Beds:</label><br>
+    <input type="number" id="beds" name="numBeds" placeholder="How Many Bedrooms?" required><br><br>
+    <!-- Password Input -->
+    <label for="baths">Baths:</label><br>
+    <input type="number" id="baths" name="numBaths" placeholder="How Many Bathrooms" required><br><br>
+    <!-- Password Confirm -->
+    <label for="floorspace">Floor Space:</label><br>
+    <input type="number" id="floorspace" name="floorSpace" placeholder="Square-footage" required><br><br>
+    <!-- First Name -->
+    <label for="price">Price:</label><br>
+    <input type="number" id="price" name="price" placeholder="Enter the Price" required><br><br>
+    <!-- Last Name -->
+    <label for="quantity">Quantity:</label><br>
+    <input type="number" id="quantity" name="quantity" placeholder="How Many are available" required><br><br>
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>
+</div>
+</body>
+</html>

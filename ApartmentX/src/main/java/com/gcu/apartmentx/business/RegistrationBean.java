@@ -10,7 +10,7 @@ public class RegistrationBean {
 
     public void addUser(String userName, String email, String password, String firstName, String lastName) {
 
-        //Psuedo-Database for users
+        //
         List<ApartmentXUser> userList = new LinkedList<>();
         userList.add(new ApartmentXUser("username", "email@email.com", "testword", "user", "name"));
         userList.add(new ApartmentXUser("username2", "email2@email.com", "testword2", "user2", "name2"));
@@ -26,7 +26,7 @@ public class RegistrationBean {
         for (ApartmentXUser user : userList) {
             System.out.println(user.toString());
         }
-        System.out.println(" ");
+        System.out.println("User Database End");
 
     }
 }
