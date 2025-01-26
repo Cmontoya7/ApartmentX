@@ -13,7 +13,7 @@ public class AuthenticationBean {
 
     public String authenticate(String username, String password) {
 
-        //Psuedo-Database for users
+        //Pseudo-Database for users
         List<ApartmentXUser> userList = new ArrayList<>();
         userList.add(new ApartmentXUser("username", "email@email.com", "testword", "Chris", "Name"));
         userList.add(new ApartmentXUser("username2", "email2@email.com", "testword2", "User2", "Name2"));
@@ -37,7 +37,7 @@ public class AuthenticationBean {
                 }
             }
         }
-        //Error message for failed loggin.
+        //Error message for failed login.
         if (!userExists) {
             msg ="Username does not exist: " + username;
         } else if (!passwordMatch) {

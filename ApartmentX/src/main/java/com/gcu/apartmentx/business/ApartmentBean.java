@@ -11,7 +11,7 @@ public class ApartmentBean {
 
     public String addApartment(String name, int numBeds, int numBaths, int floorSpace, double price, int quantity) {
 
-        //Psuedo-Database of Apartments
+        //Pseudo-Database of Apartments
         List<ApartmentModel> apartmentList = new ArrayList<>();
         apartmentList.add(new ApartmentModel("Small",3, 2, 1200, 1200, 10));
         apartmentList.add(new ApartmentModel("Small",4, 2, 1500, 1800, 8));
@@ -19,10 +19,10 @@ public class ApartmentBean {
         apartmentList.add(new ApartmentModel("Large",3, 2, 1800, 2000, 3));
         apartmentList.add(new ApartmentModel("Large",4, 2, 2350, 2500, 3));
 
-        //add new apartment to the Psuedo-Database
+        //add new apartment to the Pseudo-Database
         apartmentList.add(new ApartmentModel(name,numBeds, numBaths, floorSpace, price, quantity));
 
-        //Print the Psuedo-Database for testing purposes
+        //Print the Pseudo-Database for testing purposes
         System.out.println("Apartment Database");
         for (ApartmentModel apartment : apartmentList) {
             System.out.println(apartment.toString());

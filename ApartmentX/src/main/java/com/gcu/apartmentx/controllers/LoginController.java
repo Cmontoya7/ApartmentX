@@ -53,7 +53,7 @@ public class LoginController
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        //Ends session so to Logout the User
+        //Ends session so to Log out the User
         session.invalidate();
         return "Homepage";
     }
