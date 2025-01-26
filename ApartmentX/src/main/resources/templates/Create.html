@@ -1,33 +1,36 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
 <head>
   <meta charset="UTF-8">
-  <title>Add Apartment</title>
+  <title style="font-family: 'Baskerville Old Face', serif; font-size: xxx-large; color: darkblue">Add Apartment</title>
 </head>
-<body>
+<body style="background-image: url(/images/stock-photo3.jpg); background-size: cover">
 <div layout:fragment="content" class="container mt-5">
-  <h1>Add New Apartment</h1>
+  <h1 style="font-family: 'Baskerville Old Face', serif; color: white">Add New Apartment</h1>
+  <br/><br/>
   <form th:action="@{/create/submit}" method="post">
     <!-- Username -->
-    <label for="name">Title:</label><br>
+    <label for="name" style="color: white">Title:</label><br>
     <input type="text" id="name" name="name" placeholder="Enter the Title" required><br><br>
     <!-- Email Input -->
-    <label for="beds">Beds:</label><br>
+    <label for="beds" style="color: white">Beds:</label><br>
     <input type="number" id="beds" name="numBeds" placeholder="How Many Bedrooms?" required><br><br>
     <!-- Password Input -->
-    <label for="baths">Baths:</label><br>
+    <label for="baths" style="color: white">Baths:</label><br>
     <input type="number" id="baths" name="numBaths" placeholder="How Many Bathrooms" required><br><br>
     <!-- Password Confirm -->
-    <label for="floorspace">Floor Space:</label><br>
+    <label for="floorspace" style="color: white">Floor Space:</label><br>
     <input type="number" id="floorspace" name="floorSpace" placeholder="Square-footage" required><br><br>
     <!-- First Name -->
-    <label for="price">Price:</label><br>
-    <input type="number" id="price" name="price" placeholder="Enter the Price" required><br><br>
+    <label for="price" style="color: white">Price:</label><br>
+    <input type="number" id="price" name="price" placeholder="Monthly Price" required><br><br>
     <!-- Last Name -->
-    <label for="quantity">Quantity:</label><br>
-    <input type="number" id="quantity" name="quantity" placeholder="How Many are available" required><br><br>
+    <label for="quantity" style="color: white">Quantity:</label><br>
+    <input type="number" id="quantity" name="quantity" placeholder="How Many are Available" required><br><br>
     <!-- Submit Button -->
     <button type="submit">Submit</button>
   </form>
+  <br/> <br/> <br/><br/><br/> <br/>
+  <span style="color: white; font-size: x-large" th:text="${message}" class="fieldError"></span>
 </div>
 </body>
 </html>

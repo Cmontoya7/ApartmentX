@@ -21,8 +21,10 @@ public class LoginController
      * Handles GET requests to the root URI and sets up the model
      */
     @GetMapping("/login")
-    public String display(Model model) 
+    public String display(Model model, HttpSession session)
     {
+        if(session.getAttribute("user") != null)
+            return "Homepage";
         // Set the title attribute
         model.addAttribute("title", "Login Form");
 
@@ -44,13 +46,14 @@ public class LoginController
             return "Login";
         } else {
             // Return the view name for orders
-            session.setAttribute("username", loginModel.getUsername());
+            session.setAttribute("username", msg);
             return "Homepage";
         }
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
+        //Ends session so to Logout the User
         session.invalidate();
         return "Homepage";
     }

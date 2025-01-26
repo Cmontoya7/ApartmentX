@@ -12,7 +12,7 @@ public class RegistrationBean {
 
         //
         List<ApartmentXUser> userList = new LinkedList<>();
-        userList.add(new ApartmentXUser("username", "email@email.com", "testword", "user", "name"));
+        userList.add(new ApartmentXUser("username", "email@email.com", "testword", "Chris", "name"));
         userList.add(new ApartmentXUser("username2", "email2@email.com", "testword2", "user2", "name2"));
         userList.add(new ApartmentXUser("username3", "email3@email.com", "testword3", "user3", "name3"));
         userList.add(new ApartmentXUser("username4", "email4@email.com", "testword4", "user4", "name4"));

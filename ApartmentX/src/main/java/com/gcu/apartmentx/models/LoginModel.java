@@ -19,6 +19,7 @@ public class LoginModel
     // Setter method for username
     public void setUsername(String username) 
     {
+
         this.username = username;
     }
 

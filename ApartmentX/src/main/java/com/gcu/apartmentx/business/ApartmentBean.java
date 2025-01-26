@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class ApartmentBean {
 
-    public void addApartment(String name, int numBeds, int numBaths, int floorSpace, double price, int quantity) {
+    public String addApartment(String name, int numBeds, int numBaths, int floorSpace, double price, int quantity) {
 
         //Psuedo-Database of Apartments
         List<ApartmentModel> apartmentList = new ArrayList<>();
@@ -28,5 +28,6 @@ public class ApartmentBean {
             System.out.println(apartment.toString());
         }
         System.out.println("Apartment Database End");
+        return "You have Successfully Added " + name + " to the listings";
     }
 }
