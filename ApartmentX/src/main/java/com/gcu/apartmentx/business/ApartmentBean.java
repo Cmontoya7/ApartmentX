@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class ApartmentBean implements ApartmentInterface{
 
     public String addApartment(String name, int numBeds, int numBaths, int floorSpace, double price, int quantity) {
@@ -30,4 +29,16 @@ public class ApartmentBean implements ApartmentInterface{
         System.out.println("Apartment Database End");
         return "You have Successfully Added " + name + " to the listings";
     }
+
+	@Override
+	public void init()
+	{
+		System.out.println("ApartmentBean init method call");
+	}
+
+	@Override
+	public void destroy()
+	{
+		System.out.println("ApartmentBean destroy method call");
+	}
 }

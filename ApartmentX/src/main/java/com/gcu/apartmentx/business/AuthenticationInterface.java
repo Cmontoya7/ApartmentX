@@ -1,7 +1,7 @@
 package com.gcu.apartmentx.business;
 
-public interface AuthenticationInterface
-{
-	boolean result = false;
-	public String authenticate(String username, String password);
+public interface AuthenticationInterface {
+    public String authenticate(String username, String password);
+    public void init();
+    public void destroy();
 }

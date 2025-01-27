@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import java.util.LinkedList;
 import java.util.List;
 
-@Service
 public class RegistrationBean implements RegistrationInterface {
 
     public void addUser(String userName, String email, String password, String firstName, String lastName) {
@@ -29,4 +28,16 @@ public class RegistrationBean implements RegistrationInterface {
         System.out.println("User Database End");
 
     }
+
+	@Override
+	public void init()
+	{
+		System.out.println("RegistrationBean init method call");
+	}
+
+	@Override
+	public void destroy()
+	{
+		System.out.println("RegistrationBean destroy method call");
+	}
 }

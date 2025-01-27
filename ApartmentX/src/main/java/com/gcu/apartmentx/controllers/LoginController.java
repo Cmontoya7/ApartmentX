@@ -1,6 +1,5 @@
 package com.gcu.apartmentx.controllers;
 
-
 import javax.validation.Valid;
 import javax.servlet.http.HttpSession;
 
@@ -14,17 +13,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gcu.apartmentx.models.LoginModel;
 
 @Controller
-public class LoginController
-{
+public class LoginController {
     @Autowired
-    private AuthenticationInterface authentication = new AuthenticationBean();
-	/**
+    private AuthenticationInterface authentication;  // No need to instantiate here
+
+    /**
      * Handles GET requests to the root URI and sets up the model
      */
     @GetMapping("/login")
-    public String display(Model model, HttpSession session)
-    {
-        if(session.getAttribute("user") != null)
+    public String display(Model model, HttpSession session) {
+        if (session.getAttribute("user") != null)
             return "Homepage";
         // Set the title attribute
         model.addAttribute("title", "Login Form");
@@ -35,14 +33,14 @@ public class LoginController
         // Return the view name "login"
         return "Login";
     }
-    
+
     @PostMapping("/doLogin")
     public String doLogin(@Valid LoginModel loginModel, Model model, HttpSession session) {
         // Check for submission errors and retrieve any error messages
         String msg = authentication.authenticate(loginModel.getUsername(), loginModel.getPassword());
-        if (!authentication.result){
+        if (!((AuthenticationBean) authentication).getAuthenticationResult()) {  // Use getter here
             model.addAttribute("title", "Login Form");
-            //send the error message to the html
+            // Send the error message to the HTML
             model.addAttribute("message", msg);
             return "Login";
         } else {
@@ -54,9 +52,8 @@ public class LoginController
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        //Ends session so to Log out the User
+        // Ends session so to Log out the User
         session.invalidate();
         return "Homepage";
     }
-
 }

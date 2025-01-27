@@ -1,19 +1,15 @@
 package com.gcu.apartmentx.business;
 
 import com.gcu.apartmentx.models.ApartmentXUser;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-@Service
-public class AuthenticationBean implements AuthenticationInterface{
-    public boolean result = false;
+public class AuthenticationBean implements AuthenticationInterface {
+    private boolean authenticationResult;
 
     public String authenticate(String username, String password) {
-
-        //Pseudo-Database for users
+    	authenticationResult = false;
+        // Pseudo-Database for users
         List<ApartmentXUser> userList = new ArrayList<>();
         userList.add(new ApartmentXUser("username", "email@email.com", "testword", "Chris", "Name"));
         userList.add(new ApartmentXUser("username2", "email2@email.com", "testword2", "User2", "Name2"));
@@ -21,29 +17,43 @@ public class AuthenticationBean implements AuthenticationInterface{
         userList.add(new ApartmentXUser("username4", "email4@email.com", "testword4", "user4", "name4"));
         userList.add(new ApartmentXUser("username5", "email5@email.com", "testword5", "user5", "name5"));
 
-        //Authentication of Username and Password
+        // Authentication of Username and Password
         String msg = "message null";
         boolean userExists = false;
         boolean passwordMatch = false;
         for (ApartmentXUser user : userList) {
-            if (user.getUsername().equals(username)){
+            if (user.getUsername().equals(username)) {
                 userExists = true;
-                if (user.getPassword().equals(password)){
+                if (user.getPassword().equals(password)) {
                     passwordMatch = true;
                     msg = user.getNameFirst();
-                    result = true;
+                    authenticationResult = true;
                     break;
                 }
             }
         }
-        //Error message for failed login.
+        // Error message for failed login.
         if (!userExists) {
-            msg ="Username does not exist: " + username;
+            msg = "Username does not exist: " + username;
         } else if (!passwordMatch) {
-            msg ="Password did not match";
+            msg = "Password did not match";
         }
-        //Print any message for testing purposes
+        // Print any message for testing purposes
         System.out.println(msg);
         return msg;
+    }
+
+    public boolean getAuthenticationResult() {
+        return authenticationResult; // Getter to access the result
+    }
+
+    @Override
+    public void init() {
+        System.out.println("AuthenticationBean init method call");
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("AuthenticationBean destroy method call");
     }
 }
