@@ -12,7 +12,7 @@ import com.gcu.apartmentx.business.RegistrationBean;
 @Configuration
 public class SpringConfig
 {
-	@Bean(name="apartmentBean", initMethod="init", destroyMethod="destroy")
+	@Bean(name="apartmentBeanConfig", initMethod="init", destroyMethod="destroy")
 	@SessionScope // This will be changed to RequestScope when the database is implemented
 	public ApartmentBean addApartment()
 	{
