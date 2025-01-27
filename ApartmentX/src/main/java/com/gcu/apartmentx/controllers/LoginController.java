@@ -15,7 +15,7 @@ import com.gcu.apartmentx.models.LoginModel;
 @Controller
 public class LoginController {
     @Autowired
-    private AuthenticationInterface authentication;  // No need to instantiate here
+    private AuthenticationInterface authentication;
 
     /**
      * Handles GET requests to the root URI and sets up the model
@@ -38,7 +38,7 @@ public class LoginController {
     public String doLogin(@Valid LoginModel loginModel, Model model, HttpSession session) {
         // Check for submission errors and retrieve any error messages
         String msg = authentication.authenticate(loginModel.getUsername(), loginModel.getPassword());
-        if (!((AuthenticationBean) authentication).getAuthenticationResult()) {  // Use getter here
+        if (!((AuthenticationBean) authentication).getAuthenticationResult()) { 
             model.addAttribute("title", "Login Form");
             // Send the error message to the HTML
             model.addAttribute("message", msg);
