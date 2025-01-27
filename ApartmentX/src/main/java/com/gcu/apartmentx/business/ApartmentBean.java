@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ApartmentBean {
+public class ApartmentBean implements ApartmentInterface{
 
     public String addApartment(String name, int numBeds, int numBaths, int floorSpace, double price, int quantity) {
 

@@ -1,6 +1,7 @@
 package com.gcu.apartmentx.controllers;
 
 import com.gcu.apartmentx.business.ApartmentBean;
+import com.gcu.apartmentx.business.ApartmentInterface;
 import com.gcu.apartmentx.models.ApartmentModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProductCreationController {
 
     @Autowired
-    ApartmentBean product = new ApartmentBean();
+    private ApartmentInterface product = new ApartmentBean();
 
     @GetMapping("/create")
     public String create() {

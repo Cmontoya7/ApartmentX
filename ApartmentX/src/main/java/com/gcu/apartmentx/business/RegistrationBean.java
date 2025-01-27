@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class RegistrationBean {
+public class RegistrationBean implements RegistrationInterface {
 
     public void addUser(String userName, String email, String password, String firstName, String lastName) {
 

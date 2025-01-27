@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class AuthenticationBean {
+public class AuthenticationBean implements AuthenticationInterface{
     public boolean result = false;
 
     public String authenticate(String username, String password) {

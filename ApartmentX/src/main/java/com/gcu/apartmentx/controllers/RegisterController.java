@@ -1,6 +1,7 @@
 package com.gcu.apartmentx.controllers;
 
 import com.gcu.apartmentx.business.RegistrationBean;
+import com.gcu.apartmentx.business.RegistrationInterface;
 import com.gcu.apartmentx.models.ApartmentXUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RegisterController {
 
     @Autowired
-    RegistrationBean register = new RegistrationBean();
+    private RegistrationInterface register = new RegistrationBean();
 
     @GetMapping("/register")
     public String register() {

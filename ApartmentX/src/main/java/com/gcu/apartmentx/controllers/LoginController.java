@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import javax.servlet.http.HttpSession;
 
 import com.gcu.apartmentx.business.AuthenticationBean;
+import com.gcu.apartmentx.business.AuthenticationInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,7 @@ import com.gcu.apartmentx.models.LoginModel;
 public class LoginController
 {
     @Autowired
-    private AuthenticationBean authentication = new AuthenticationBean();
+    private AuthenticationInterface authentication = new AuthenticationBean();
 	/**
      * Handles GET requests to the root URI and sets up the model
      */
