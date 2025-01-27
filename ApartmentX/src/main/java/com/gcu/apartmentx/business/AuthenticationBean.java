@@ -28,7 +28,6 @@ public class AuthenticationBean {
         for (ApartmentXUser user : userList) {
             if (user.getUsername().equals(username)){
                 userExists = true;
-
                 if (user.getPassword().equals(password)){
                     passwordMatch = true;
                     msg = user.getNameFirst();

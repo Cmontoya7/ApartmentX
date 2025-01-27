@@ -10,7 +10,7 @@ public class HomeController
 {
 	
 	@GetMapping("/")
-    public String display(Model model) 
+    public String display()
     {
         return "Homepage";
     }
