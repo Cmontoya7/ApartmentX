@@ -8,12 +8,12 @@
   <div layout:fragment="content" class="container mt-5">
   <h1 style="font-family: 'Baskerville Old Face', serif; color: white">Register</h1>
 	<form th:action="@{/register/submitRegistration}" method="post">
-		<!-- Username -->
-		<label for="username" style="color: white">Username:</label><br>
-		<input type="text" id="username" name="username" placeholder="Enter your username" required><br><br>
 		<!-- Email Input -->
 		<label for="email" style="color: white">Email:</label><br>
 		<input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+		<!-- Username -->
+		<label for="username" style="color: white">Username:</label><br>
+		<input type="text" id="username" name="username" placeholder="Enter your username" required><br><br>
         <!-- Password Input -->
         <label for="password" style="color: white">Password:</label><br>
         <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>

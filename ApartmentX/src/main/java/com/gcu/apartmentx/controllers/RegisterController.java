@@ -22,7 +22,7 @@ public class RegisterController {
 
     @PostMapping("/register/submitRegistration") //TEMP will direct to database
     public String submitRegistrationForm(@ModelAttribute ApartmentXUser user) {
-        //Send the new user information to Registration bean to be added to Psuedo-Database
+        //Send the new user information to Registration bean to be added to Pseudo-Database
         register.addUser(user.getUsername(), user.getEmail(), user.getPassword(), user.getNameFirst(), user.getNameLast());
         return "RegisterSuccess";
     }

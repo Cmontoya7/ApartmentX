@@ -1,22 +1,28 @@
 package com.gcu.apartmentx.business;
 
+import com.gcu.apartmentx.data.UserDataService;
+import com.gcu.apartmentx.data.entities.UserEntity;
+import com.gcu.apartmentx.data.repositories.UserRepository;
 import com.gcu.apartmentx.models.ApartmentXUser;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AuthenticationBean implements AuthenticationInterface {
     private boolean authenticationResult;
+    @Autowired
+    UserDataService service;
 
     public String authenticate(String username, String password) {
     	authenticationResult = false;
         // Pseudo-Database for users
+        List<UserEntity> userEntities = service.findAll();
         List<ApartmentXUser> userList = new ArrayList<>();
-        userList.add(new ApartmentXUser("username", "email@email.com", "testword", "Chris", "Name"));
-        userList.add(new ApartmentXUser("username2", "email2@email.com", "testword2", "User2", "Name2"));
-        userList.add(new ApartmentXUser("username3", "email3@email.com", "testword3", "user3", "name3"));
-        userList.add(new ApartmentXUser("username4", "email4@email.com", "testword4", "user4", "name4"));
-        userList.add(new ApartmentXUser("username5", "email5@email.com", "testword5", "user5", "name5"));
 
+        for (UserEntity u : userEntities) {
+            userList.add(new ApartmentXUser(u.getUsername(), u.getEmail(), u.getPassword(), u.getFirstName(), u.getLastName()));
+        }
         // Authentication of Username and Password
         String msg = "message null";
         boolean userExists = false;
