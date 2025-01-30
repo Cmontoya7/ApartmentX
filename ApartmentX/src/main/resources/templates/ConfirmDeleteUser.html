@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+
+<body style="background-image: url(/images/stock-photo3.jpg); background-size: cover">
+<div layout:fragment="content" class="container mt-5">
+    <h1 style="font-family: 'Baskerville Old Face', serif; color: white">Are You Sure You Would Like to Delete:</h1>
+    <h2 th:text="'Username: ' + ${user.username}" style="font-family: 'Baskerville Old Face', serif; color: white"></h2>
+    <h2 th:text="'First Name: ' + ${user.firstName}" style="font-family: 'Baskerville Old Face', serif; color: white"></h2>
+    <h2 th:text="'Last Name: ' + ${user.lastName}" style="font-family: 'Baskerville Old Face', serif; color: white"></h2>
+    <form th:action="@{/delete/isconfirmed}" th:method="post">
+        <button th:name="action" th:value="${true}">Confirm</button>
+        <button th:name="action" th:value="${false}" style="color: red">Deny</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/html">
     <div th:fragment="header">
         <!-- ApartmentX Logo at the Top of the page (currently not displaying on the webpage) -->
         <div class="container-fluid">
@@ -18,10 +19,8 @@
                     <ul class="nav navbar-nav">
                         <li th:if="${session.level != null}"><a th:href="@{/listings}" style="color: darkblue; font-size: large">Listing</a></li>
                         <li th:if="${session.level == 'Landlord'}" ><a th:href="@{/create}" style="color: darkblue; font-size: large">Create</a></li>
-                        <li th:if="${session.level == 'Landlord'}" ><a th:href="@{/deletelisting}" style="color: darkblue; font-size: large">Delete</a></li>
                         <li th:if="${session.level == 'Admin'}" ><a th:href="@{/create}" style="color: darkblue; font-size: large">Create</a></li>
-                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/deletelisting}" style="color: darkblue; font-size: large">Delete Listing</a></li>
-                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/delete}" style="color: darkblue; font-size: large">Delete User</a></li>
+                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/delete}" style="color: darkblue; font-size: large">Users</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li th:if="${session.username == null}"><a th:href="@{/login}" style="color: darkblue; font-size: large">Login</a></li>
