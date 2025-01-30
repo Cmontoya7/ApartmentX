@@ -20,8 +20,8 @@
                         <li th:if="${session.level == 'Landlord'}" ><a th:href="@{/deletelisting}" style="color: darkblue; font-size: large">Create</a></li>
                         <li th:if="${session.level == 'Landlord'}" ><a th:href="@{/create}" style="color: darkblue; font-size: large">Delete</a></li>
                         <li th:if="${session.level == 'Admin'}" ><a th:href="@{/create}" style="color: darkblue; font-size: large">Create</a></li>
-                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/deletelisting}" style="color: darkblue; font-size: large">Create</a></li>
-                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/deleteuser}" style="color: darkblue; font-size: large">Delete User</a></li>
+                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/deletelisting}" style="color: darkblue; font-size: large">Delete Listing</a></li>
+                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/delete}" style="color: darkblue; font-size: large">Delete User</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li th:if="${session.username == null}"><a th:href="@{/login}" style="color: darkblue; font-size: large">Login</a></li>

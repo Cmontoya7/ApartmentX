@@ -28,8 +28,8 @@ public class RegisterController {
         return "RegisterSuccess";
     }
 
-    @GetMapping("/deleteuser")
-    public String deleteUser(@RequestParam(value = "id", required = true) int id) {
+    @GetMapping("/delete")
+    public String deleteUser() {
         return "DeleteUser";
     }
 }
