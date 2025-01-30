@@ -5,16 +5,19 @@ import com.gcu.apartmentx.data.entities.UserEntity;
 import com.gcu.apartmentx.models.ApartmentXUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class RegistrationBean implements RegistrationInterface {
     @Autowired
-    private UserDataService userDataService;
+    private UserDataService service;
 
-    public void addUser(String userName, String email, String password, String firstName, String lastName) {
-        UserEntity userEntity = new UserEntity(userName, email, password, firstName, lastName);
-        userDataService.create(userEntity);
+	@Override
+    public void addUser(String type, String userName, String email, String password, String firstName, String lastName) {
+        UserEntity userEntity = new UserEntity(type, userName, email, password, firstName, lastName);
+        service.create(userEntity);
     }
 
 	@Override

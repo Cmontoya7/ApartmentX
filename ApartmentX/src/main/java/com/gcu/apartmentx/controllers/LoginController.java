@@ -45,7 +45,11 @@ public class LoginController {
             return "Login";
         } else {
             // Return the view name for orders
-            session.setAttribute("username", msg);
+            String[] split = msg.split(":");
+            String msg1 = split[0];
+            String msg2 = split[1];
+            session.setAttribute("username", msg1);
+            session.setAttribute("level", msg2);
             return "Homepage";
         }
     }

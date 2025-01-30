@@ -2,12 +2,18 @@ package com.gcu.apartmentx.controllers;
 
 import com.gcu.apartmentx.business.RegistrationBean;
 import com.gcu.apartmentx.business.RegistrationInterface;
+import com.gcu.apartmentx.data.UserDataService;
+import com.gcu.apartmentx.data.entities.UserEntity;
 import com.gcu.apartmentx.models.ApartmentXUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class RegisterController {
@@ -21,9 +27,9 @@ public class RegisterController {
     }
 
     @PostMapping("/register/submitRegistration") //TEMP will direct to database
-    public String submitRegistrationForm(@ModelAttribute ApartmentXUser user) {
+    public String submitRegistrationForm(@ModelAttribute ApartmentXUser user, @RequestParam(value = "action", required = false) String type) {
         //Send the new user information to Registration bean to be added to Pseudo-Database
-        register.addUser(user.getUsername(), user.getEmail(), user.getPassword(), user.getNameFirst(), user.getNameLast());
+        register.addUser(type, user.getUsername(), user.getEmail(), user.getPassword(), user.getNameFirst(), user.getNameLast());
         return "RegisterSuccess";
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.data.relational.core.mapping.Table;
 public class UserEntity {
     @Id
     private int id;
+    @Column("TYPE")
+    private String type;
     @Column("USERNAME")
     private String username;
     @Column("EMAIL")
@@ -22,8 +24,9 @@ public class UserEntity {
 
     public UserEntity() {}
 
-    public UserEntity(int id, String username, String email, String password, String firstName, String lastName) {
+    public UserEntity(int id, String type, String username, String email, String password, String firstName, String lastName) {
         this.id = id;
+        this.type = type;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -31,7 +34,8 @@ public class UserEntity {
         this.lastName = lastName;
     }
 
-    public UserEntity(String username, String email, String password, String firstName, String lastName) {
+    public UserEntity(String type, String username, String email, String password, String firstName, String lastName) {
+        this.type = type;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -44,6 +48,12 @@ public class UserEntity {
     }
     public void setId(int id) {
         this.id = id;
+    }
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
     public String getEmail() {
         return email;
