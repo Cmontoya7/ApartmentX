@@ -50,9 +50,9 @@ public class UserDataService implements DataAccessInterface<UserEntity> {
 
     @Override
     public boolean create(UserEntity user) {
-        String sql = "INSERT INTO USERS(USERNAME, EMAIL, PASSWORD, FIRST_NAME, LAST_NAME) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO USERS(TYPE, USERNAME, EMAIL, PASSWORD, FIRST_NAME, LAST_NAME) VALUES (?,?,?,?,?,?)";
         try{
-            jdbcTemplate.update(sql, user.getUsername(), user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName());
+            jdbcTemplate.update(sql, user.getType(), user.getUsername(), user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName());
         } catch(Exception e){
             e.printStackTrace();
             return false;
@@ -61,12 +61,24 @@ public class UserDataService implements DataAccessInterface<UserEntity> {
     }
 
     @Override
-    public boolean update(UserEntity user) {
+    public boolean update(UserEntity user, String fieldName, String newValue) {
+        try {
+            jdbcTemplate.update("UPDATE USERS SET ? = ? WHERE ID = ?", fieldName, newValue, user.getId());
+        } catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        try {
+            jdbcTemplate.update("DELETE FROM USERS WHERE ID = ?", id);
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

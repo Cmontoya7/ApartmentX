@@ -12,8 +12,8 @@ public class RegistrationBean implements RegistrationInterface {
     @Autowired
     private UserDataService userDataService;
 
-    public void addUser(String userName, String email, String password, String firstName, String lastName) {
-        UserEntity userEntity = new UserEntity(userName, email, password, firstName, lastName);
+    public void addUser(String type, String userName, String email, String password, String firstName, String lastName) {
+        UserEntity userEntity = new UserEntity(type, userName, email, password, firstName, lastName);
         userDataService.create(userEntity);
     }
 

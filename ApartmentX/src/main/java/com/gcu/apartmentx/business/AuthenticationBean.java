@@ -21,7 +21,7 @@ public class AuthenticationBean implements AuthenticationInterface {
         List<ApartmentXUser> userList = new ArrayList<>();
 
         for (UserEntity u : userEntities) {
-            userList.add(new ApartmentXUser(u.getUsername(), u.getEmail(), u.getPassword(), u.getFirstName(), u.getLastName()));
+            userList.add(new ApartmentXUser(u.getType(), u.getUsername(), u.getEmail(), u.getPassword(), u.getFirstName(), u.getLastName()));
         }
         // Authentication of Username and Password
         String msg = "message null";
@@ -32,7 +32,7 @@ public class AuthenticationBean implements AuthenticationInterface {
                 userExists = true;
                 if (user.getPassword().equals(password)) {
                     passwordMatch = true;
-                    msg = user.getNameFirst();
+                    msg = user.getNameFirst() + ":" + user.getType();
                     authenticationResult = true;
                     break;
                 }

@@ -1,13 +1,15 @@
 package com.gcu.apartmentx.models;
 
 public class ApartmentXUser {
+    private String type;
     private String username;
     private String email;
     private String password;
     private String nameFirst;
     private String nameLast;
 
-    public ApartmentXUser(String username, String email, String password, String nameFirst, String nameLast) {
+    public ApartmentXUser(String type, String username, String email, String password, String nameFirst, String nameLast) {
+        this.type = type;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -15,6 +17,12 @@ public class ApartmentXUser {
         this.nameLast = nameLast;
     }
 
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
     public String getEmail() {
         return email;
     }
@@ -62,6 +70,7 @@ public class ApartmentXUser {
     @Override
     public String toString() {
         return "ApartmentXUser{" +
+                "type=" + type + '\'' +
                 "username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
