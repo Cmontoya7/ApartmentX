@@ -4,6 +4,9 @@ import com.gcu.apartmentx.models.ApartmentModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+
 public class ApartmentBean implements ApartmentInterface {
 
     // Remove static so each instance of ApartmentBean has its own list
@@ -19,6 +22,11 @@ public class ApartmentBean implements ApartmentInterface {
         apartmentList.add(new ApartmentModel("Small", 2, 1, 800, 750, 10));
         apartmentList.add(new ApartmentModel("Large", 3, 2, 1800, 2000, 3));
         apartmentList.add(new ApartmentModel("Large", 4, 2, 2350, 2500, 3));
+    }
+    
+    @Override
+    public List<ApartmentModel> getListings() {
+    	return apartmentList;
     }
 
     public String addApartment(String name, int numBeds, int numBaths, int floorSpace, double price, int quantity) {
