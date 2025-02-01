@@ -2,7 +2,10 @@ package com.gcu.apartmentx.controllers;
 
 import com.gcu.apartmentx.business.ApartmentBean;
 import com.gcu.apartmentx.business.ApartmentInterface;
+import com.gcu.apartmentx.business.RegistrationBean;
+import com.gcu.apartmentx.business.RegistrationInterface;
 import com.gcu.apartmentx.models.ApartmentModel;
+import com.gcu.apartmentx.models.ApartmentXUser;
 
 import java.util.List;
 
@@ -19,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProductCreationController {
 
     @Autowired
-    private ApartmentInterface product;
+    private ApartmentInterface apartmentInterface = new ApartmentBean();
 
     @GetMapping("/create")
     public String create() {
@@ -27,8 +30,8 @@ public class ProductCreationController {
     }
 
     @PostMapping("/create/submit")
-    public String submitProduct(@RequestParam String name, @RequestParam int numBeds, @RequestParam int numBaths, @RequestParam int floorSpace, @RequestParam double price, @RequestParam int quantity) {
-        product.addApartment(name, numBeds, numBaths, floorSpace, price, quantity);
+    public String submitProduct(@ModelAttribute ApartmentModel apartment) {
+        apartmentInterface.addApartment(apartment.getName(), apartment.getNumBeds(), apartment.getNumBaths(), apartment.getFloorSpace(), apartment.getPrice(), apartment.getQuantity());
         return "Create";
     }
     

@@ -1,16 +1,23 @@
 package com.gcu.apartmentx.business;
 
+import com.gcu.apartmentx.data.ApartmentDataService;
+import com.gcu.apartmentx.data.UserDataService;
+import com.gcu.apartmentx.data.entities.ApartmentEntity;
+import com.gcu.apartmentx.data.entities.UserEntity;
 import com.gcu.apartmentx.models.ApartmentModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 public class ApartmentBean implements ApartmentInterface {
 
-    // Remove static so each instance of ApartmentBean has its own list
     private List<ApartmentModel> apartmentList = new ArrayList<>();
+    
+    @Autowired
+    private ApartmentDataService apartmentDataService;
     
     public ApartmentBean() {
         populateApartmentList();
@@ -28,18 +35,11 @@ public class ApartmentBean implements ApartmentInterface {
     public List<ApartmentModel> getListings() {
     	return apartmentList;
     }
-
-    public String addApartment(String name, int numBeds, int numBaths, int floorSpace, double price, int quantity) {
-        apartmentList.add(new ApartmentModel(name, numBeds, numBaths, floorSpace, price, quantity));
-
-        // Debug: Print the list
-        System.out.println("Apartment Database");
-        for (ApartmentModel apartment : apartmentList) {
-            System.out.println(apartment.toString());
-        }
-        System.out.println("Apartment Database End");
-
-        return "You have successfully added " + name + " to the listings";
+    
+    @Override
+    public void addApartment(String name, int numBeds, int numBaths, int floorSpace, float price, int quantity) {
+        ApartmentEntity apartmentEntity = new ApartmentEntity(name, numBeds, numBaths, floorSpace, price, quantity);
+        apartmentDataService.create(apartmentEntity);
     }
 
     @Override

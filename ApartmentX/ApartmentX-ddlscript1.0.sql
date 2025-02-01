@@ -22,7 +22,6 @@ USE `apartmentx` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `apartmentx`.`apartments` (
   `ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `TYPE` INT(11) NOT NULL,
   `NAME` VARCHAR(45) NOT NULL,
   `NUMBER_BEDS` INT(11) NOT NULL,
   `NUMBER_BATHS` INT(11) NOT NULL,
@@ -33,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `apartmentx`.`apartments` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_bin;
-
 
 -- -----------------------------------------------------
 -- Table `apartmentx`.`users`
