@@ -1,16 +1,16 @@
 package com.gcu.apartmentx.models;
 
 public class ApartmentModel {
-
+	
     private String name;
     private int numBeds;
     private int numBaths;
     private int floorSpace;
-    private double price;
+    private float price;
     private int quantity;
 
 
-    public ApartmentModel(String name, int numBeds, int numBaths, int floorSpace, double price, int quantity) {
+    public ApartmentModel(String name, int numBeds, int numBaths, int floorSpace, float price, int quantity) {
         this.name = name;
         this.numBeds = numBeds;
         this.numBaths = numBaths;
@@ -43,10 +43,10 @@ public class ApartmentModel {
     public void setFloorSpace(int floorSpace) {
         this.floorSpace = floorSpace;
     }
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
     public int getQuantity() {
