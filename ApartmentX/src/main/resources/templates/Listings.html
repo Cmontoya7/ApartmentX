@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
-
-<body style="background-image: url(/images/stock-photo3.jpg); background-size: cover">
-<div layout:fragment="content" class="container mt-5">
-  <h1 style="font-family: 'Baskerville Old Face', serif; color: white">Listings</h1>
-  <table style="width:50%;color: white">
-  		<thead>
-  			<tr>
+<head>
+	<link rel="stylesheet" th:href="Styles.css">
+</head>
+<body>
+<div layout:fragment="content" class="listing">
+  <h1 id="form-header">Listings</h1>
+  <table>
+  		<thead class="listing-columns">
+  			<tr class="listing-columns th">
   				<th style="text-align:center">Name</th>
   				<th style="text-align:center">Number of Beds</th>
 				<th style="text-align:center">Number of Baths</th>
@@ -17,26 +19,18 @@
   		</thead>
 		<tbody>
 			<tr th:if="${listings == null or listings.isEmpty()}">
-				<td style="text-align:center" colspan="2">No Listings Yet</td>
+				<td>No Listings Yet</td>
 			</tr>
 			<tr th:each="listing : ${listings}">
-				<td style="text-align:center"><h5 th:text="${listing.name}">Title</h5></td>
-				 <td style="text-align:center"><h5 th:text="${listing.numBeds}">Beds</h5></td>
-				 <td style="text-align:center"><h5 th:text="${listing.numBaths}">Baths</h5></td>
-				 <td style="text-align:center"><h5 th:text="${listing.floorSpace}">Floor Space</h5></td>
-				 <td style="text-align:center"><h5 th:text="${listing.price}">Price</h5></td>
-				 <td style="text-align:center"><h5 th:text="${listing.quantity}">Quantity</h5></td>
+				 <td><h5 th:text="${listing.name}">Title</h5></td>
+				 <td><h5 th:text="${listing.numBeds}">Beds</h5></td>
+				 <td><h5 th:text="${listing.numBaths}">Baths</h5></td>
+				 <td><h5 th:text="${listing.floorSpace}">Floor Space</h5></td>
+				 <td><h5 th:text="${listing.price}">Price</h5></td>
+				 <td><h5 th:text="${listing.quantity}">Quantity</h5></td>
 			</tr>
 		</tbody>
   	</table>
   </div>
 </body>
 </html>
-
-
-
-
-
-
-
-<!--String name, int numBeds, int numBaths, int floorSpace, double price, int quantity-->

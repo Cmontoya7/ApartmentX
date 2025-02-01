@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
-
-<body style="background-image: url(/images/stock-photo3.jpg); background-size: cover">
-<div layout:fragment="content" class="container mt-5">
-        <h1 style="font-family: 'Baskerville Old Face', serif; color: white">Delete User</h1>
+<head>
+	<link rel="stylesheet" th:href="Styles.css">
+</head>
+<body>
+<div layout:fragment="content" class="form">
+        <h1 id="form-header">Delete User</h1>
         <form th:action="@{/delete/confirm}" method="post">
-        <table style="color: white">
+        <table>
                 <thead>
                 <tr>
                         <th style="text-align: center; padding: 10px"> User ID </th>
