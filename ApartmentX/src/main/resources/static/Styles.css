@@ -94,3 +94,12 @@ th, td {
     text-align: center;
 }
 
+.nav :last-child{
+	padding-right: 20px;
+}
+
+.navbar-default * {
+	color: rgb(51, 99, 152) !important; 
+	font-size: large; 
+	font-family: 'Baskerville Old Face', serif;
+}

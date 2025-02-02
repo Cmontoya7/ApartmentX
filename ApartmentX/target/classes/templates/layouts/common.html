@@ -13,23 +13,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/" class="navbar-brand" style="font-family: 'Baskerville Old Face', serif ;color: rgb(51, 99, 152); font-size: x-large">ApartmentX</a>
+                    <a href="/" class="navbar-brand" style="font-size: x-large">ApartmentX</a>
                 </div>
                 <div id="navbarCollapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li th:if="${session.level != null}"><a th:href="@{/listings}" style="color: rgb(51, 99, 152); font-size: large">Listing</a></li>
-                        <li th:if="${session.level == 'Landlord'}" ><a th:href="@{/create}" style="color: rgb(51, 99, 152); font-size: large">Create</a></li>
-                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/create}" style="color: rgb(51, 99, 152); font-size: large">Create</a></li>
-                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/delete}" style="color: rgb(51, 99, 152); font-size: large">Users</a></li>
+                        <li th:if="${session.level != null}"><a th:href="@{/listings}">Listing</a></li>
+                        <li th:if="${session.level == 'Landlord'}" ><a th:href="@{/create}">Create</a></li>
+                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/create}">Create</a></li>
+                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/delete}">Users</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li th:if="${session.username == null}"><a th:href="@{/login}" style="color: rgb(51, 99, 152); font-size: large">Login</a></li>
-                        <li th:if="${session.username == null}"><a th:href="@{/register}" style="color: rgb(51, 99, 152); font-size: large">Register</a></li>
+                        <li th:if="${session.username == null}"><a th:href="@{/login}">Login</a></li>
+                        <li th:if="${session.username == null}"><a th:href="@{/register}">Register</a></li>
                         <li th:if="${session.username != null}">
-                            <a th:text="'Welcome, ' + ${session.username}" style="font-family: 'Baskerville Old Face', serif; color: rgb(51, 99, 152); font-size: x-large"></a>
+                            <a th:text="'Welcome, ' + ${session.username}"></a>
                         </li>
                         <li th:if="${session.username != null}">
-                            <a th:href="@{/logout}" style="color: rgb(51, 99, 152); font-size: large">Logout</a>
+                            <a class="nav :last-child" th:href="@{/logout}">Logout</a>
                         </li>
                     </ul>
                 </div>
