@@ -2,7 +2,6 @@ package com.gcu.apartmentx.data;
 
 import com.gcu.apartmentx.data.entities.UserEntity;
 import com.gcu.apartmentx.data.repositories.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
