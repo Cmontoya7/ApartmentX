@@ -41,7 +41,7 @@ h1 {
 	border-radius: 20px;
 	min-width: fit-content;
 	max-width: 500px;
-	mid-height: fit-content;
+	min-height: fit-content;
 	max-height: 700px;
 }
 
@@ -55,7 +55,7 @@ h1 {
 	border-radius: 20px;
 	min-width: fit-content;
 	max-width: 700px;
-	mid-height: fit-content;
+	min-height: fit-content;
 	max-height: 700px;
 }
 
@@ -63,7 +63,7 @@ h1 {
 	color:aliceblue;
 	background-color: rgb(51, 99, 152);
 	margin: 10px;
-	taxt-align: center;
+	text-align: center;
 	padding: 5px;
 	padding-left: 20px;
 	padding-right: 20px

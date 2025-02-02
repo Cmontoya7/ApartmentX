@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Apartment</title>
-	<link rel="stylesheet" th:href="@{Styles.css}">
+	<link rel="stylesheet" th:href="@{/Styles.css}">
 </head>
 <body>
     <div layout:fragment="content" class="form">
@@ -34,7 +34,7 @@
             <input type="number" id="quantity" name="quantity" placeholder="How Many are Available" required><br><br>
             
             <!-- Submit Button -->
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <br/><br/>
         <span th:text="${message}" class="message"></span>
