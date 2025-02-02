@@ -26,7 +26,7 @@
 				 <td><h5 th:text="${listing.numBeds}">Beds</h5></td>
 				 <td><h5 th:text="${listing.numBaths}">Baths</h5></td>
 				 <td><h5 th:text="${listing.floorSpace}">Floor Space</h5></td>
-				 <td><h5 th:text="${#numbers.formatDecimal(listing.price, 1, 2)}">Price</h5></td>
+				<td><h5 th:text="'$' + ${#numbers.formatDecimal(listing.price, 1, 2)}">Price</h5></td>
 				 <td><h5 th:text="${listing.quantity}">Quantity</h5></td>
 			</tr>
 		</tbody>
