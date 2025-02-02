@@ -10,8 +10,8 @@
     <h2 th:text="'First Name: ' + ${user.firstName}" style="font-family: 'Baskerville Old Face', serif; color: white"></h2>
     <h2 th:text="'Last Name: ' + ${user.lastName}" style="font-family: 'Baskerville Old Face', serif; color: white"></h2>
     <form th:action="@{/delete/isconfirmed}" th:method="post">
-        <button th:name="action" th:value="${true}">Confirm</button>
-        <button th:name="action" th:value="${false}" style="color: red">Deny</button>
+        <button th:name="action" th:value="${true}" class="btn btn-danger">Confirm</button>
+        <button th:name="action" th:value="${false}" class="btn btn-primary">Cancel</button>
     </form>
 </div>
 </body>
