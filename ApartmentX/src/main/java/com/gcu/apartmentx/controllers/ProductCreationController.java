@@ -30,8 +30,9 @@ public class ProductCreationController {
     }
 
     @PostMapping("/create/submit")
-    public String submitProduct(@ModelAttribute ApartmentModel apartment) {
-        apartmentInterface.addApartment(apartment.getName(), apartment.getNumBeds(), apartment.getNumBaths(), apartment.getFloorSpace(), apartment.getPrice(), apartment.getQuantity());
+    public String submitProduct(@ModelAttribute ApartmentModel apartment, Model model) {
+        String msg = apartmentInterface.addApartment(apartment.getName(), apartment.getNumBeds(), apartment.getNumBaths(), apartment.getFloorSpace(), apartment.getPrice(), apartment.getQuantity());
+        model.addAttribute("message", msg);
         return "Create";
     }
     
