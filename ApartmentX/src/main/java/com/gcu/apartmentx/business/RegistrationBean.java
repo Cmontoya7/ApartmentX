@@ -10,14 +10,26 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class RegistrationBean implements RegistrationInterface {
     @Autowired
     private UserDataService service;
 
 	@Override
-    public void addUser(String type, String userName, String email, String password, String firstName, String lastName) {
-        UserEntity userEntity = new UserEntity(type, userName, email, password, firstName, lastName);
-        service.create(userEntity);
+    public boolean addUser(String type, String userName, String email, String password, String firstName, String lastName) {
+        UserEntity newUserEntity = new UserEntity(type, userName, email, password, firstName, lastName);
+        
+        List<UserEntity> currentUsers = service.findAll();
+        for(UserEntity userEntity : currentUsers)
+        {
+        	if (userEntity.getUsername().equals(newUserEntity.getUsername()) || userEntity.getEmail().equals(newUserEntity.getEmail()))
+        	{
+        		return false;
+        	}
+        }
+        service.create(newUserEntity);
+        return true;
     }
 
 	@Override

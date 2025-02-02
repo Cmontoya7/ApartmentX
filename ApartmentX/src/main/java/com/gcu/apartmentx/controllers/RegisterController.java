@@ -26,10 +26,14 @@ public class RegisterController {
         return "Register";
     }
 
-    @PostMapping("/register/submitRegistration") //TEMP will direct to database
+    @PostMapping("/register/submitRegistration")
     public String submitRegistrationForm(@ModelAttribute ApartmentXUser user, @RequestParam(value = "action", required = false) String type) {
-        //Send the new user information to Registration bean to be added to Pseudo-Database
-        register.addUser(type, user.getUsername(), user.getEmail(), user.getPassword(), user.getNameFirst(), user.getNameLast());
-        return "RegisterSuccess";
+        // Send the user to the success page if the registration works
+    	if (register.addUser(type, user.getUsername(), user.getEmail(), user.getPassword(), user.getNameFirst(), user.getNameLast()))
+    	{
+    		return "RegisterSuccess";
+    	}
+    	// Show the registration failure page if it is not successful
+        return "RegisterFailure";
     }
 }
