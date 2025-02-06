@@ -18,16 +18,21 @@
   			</tr>
   		</thead>
 		<tbody>
-			<tr th:if="${listings == null or listings.isEmpty()}">
+			<tr th:if="${apartments == null or apartments.isEmpty()}">
 				<td>No Listings Yet</td>
 			</tr>
-			<tr th:each="listing : ${listings}">
-				 <td><h5 th:text="${listing.name}">Title</h5></td>
-				 <td><h5 th:text="${listing.numBeds}">Beds</h5></td>
-				 <td><h5 th:text="${listing.numBaths}">Baths</h5></td>
-				 <td><h5 th:text="${listing.floorSpace}">Floor Space</h5></td>
-				<td><h5 th:text="'$' + ${#numbers.formatDecimal(listing.price, 1, 2)}">Price</h5></td>
-				 <td><h5 th:text="${listing.quantity}">Quantity</h5></td>
+			<tr th:each="apartment : ${apartments}">
+				 <td><h5 th:text="${apartment.name}">Title</h5></td>
+				 <td><h5 th:text="${apartment.numBeds}">Beds</h5></td>
+				 <td><h5 th:text="${apartment.numBaths}">Baths</h5></td>
+				 <td><h5 th:text="${apartment.floorSpace}">Floor Space</h5></td>
+				 <td><h5 th:text="'$' + ${#numbers.formatDecimal(apartment.price, 1, 2)}">Price</h5></td>
+				 <td><h5 th:text="${apartment.quantity}">Quantity</h5></td>
+				 <td style="text-align: center; color: red">
+				    <form th:action="@{/deleteApartment/confirm}" method="post">
+				    	<button type="submit" th:name="action" th:value="${apartment.id}">Delete</button>
+				 	</form>
+				 </td>
 			</tr>
 		</tbody>
   	</table>
