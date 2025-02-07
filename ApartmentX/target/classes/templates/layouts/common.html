@@ -20,7 +20,7 @@
                         <li th:if="${session.level != null}"><a th:href="@{/listings}">Listing</a></li>
                         <li th:if="${session.level == 'Landlord'}" ><a th:href="@{/create}">Create</a></li>
                         <li th:if="${session.level == 'Admin'}" ><a th:href="@{/create}">Create</a></li>
-                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/delete}">Users</a></li>
+                        <li th:if="${session.level == 'Admin'}" ><a th:href="@{/users}">Users</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li th:if="${session.username == null}"><a th:href="@{/login}">Login</a></li>

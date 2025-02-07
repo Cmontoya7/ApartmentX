@@ -63,15 +63,18 @@ public class ApartmentDataService implements DataAccessInterface<ApartmentEntity
     }
 
     @Override
-    public boolean update(ApartmentEntity apartment, String fieldName, String newValue) {
+    public boolean update(ApartmentEntity apartment) {
+        String sql = "UPDATE APARTMENTS SET NAME = ?, NUMBER_BEDS = ?, NUMBER_BATHS = ?, FLOOR_SPACE = ?, PRICE = ?, QUANTITY = ? WHERE ID = ?";
         try {
-            jdbcTemplate.update("UPDATE APARTMENTS SET ? = ? WHERE ID = ?", fieldName, newValue, apartment.getId());
-        } catch(Exception e){
+            jdbcTemplate.update(sql, apartment.getName(), apartment.getNumBeds(), apartment.getNumBaths(), 
+                                apartment.getFloorSpace(), apartment.getPrice(), apartment.getQuantity(), apartment.getId());
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         return true;
     }
+
 
     @Override
     public boolean delete(int id) {

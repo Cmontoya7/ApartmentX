@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+    <link rel="stylesheet" th:href="@{/Styles.css}">
+</head>
+<body style="background-image: url(/images/stock-photo3.jpg); background-size: cover">
+    <div layout:fragment="content" class="form">
+        <h1 id="form-header">Update User Information</h1>
+        <h4>Enter in the new information in the following boxes. Any boxes left empty will not be updated</h4>
+        <form th:action="@{/users/update/do-update}" method="post">
+            <input type="hidden" th:name="id" th:value="${user.id}" />
+            <table>
+                <tr>
+                    <td><label>Username:</label></td>
+                    <td><input type="text" th:name="username" th:placeholder="${user.username}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td><input type="email" th:name="email" th:placeholder="${user.email}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Password:</label></td>
+                    <td><input type="password" th:name="password" placeholder="Enter new password" /></td>
+                </tr>
+                <tr>
+                    <td><label>First Name:</label></td>
+                    <td><input type="text" th:name="firstName" th:placeholder="${user.firstName}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Last Name:</label></td>
+                    <td><input type="text" th:name="lastName" th:placeholder="${user.lastName}" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button class="btn btn-success" type="submit">Update</button>
+                        <a class="btn btn-danger" th:href="@{/users}">Cancel</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

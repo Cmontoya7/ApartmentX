@@ -49,10 +49,13 @@ public class UserDataService implements DataAccessInterface<UserEntity> {
 
     @Override
     public boolean create(UserEntity user) {
+    	// Create the SQL query template
         String sql = "INSERT INTO USERS(TYPE, USERNAME, EMAIL, PASSWORD, FIRST_NAME, LAST_NAME) VALUES (?,?,?,?,?,?)";
         try{
+        	// Fill out the template with the updated information
             jdbcTemplate.update(sql, user.getType(), user.getUsername(), user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName());
         } catch(Exception e){
+        	// Print an error if one occurs
             e.printStackTrace();
             return false;
         }
@@ -60,9 +63,10 @@ public class UserDataService implements DataAccessInterface<UserEntity> {
     }
 
     @Override
-    public boolean update(UserEntity user, String fieldName, String newValue) {
+    public boolean update(UserEntity user) {
+    	String sql = "UPDATE USERS SET USERNAME=?, EMAIL=?, PASSWORD=?, FIRST_NAME=?, LAST_NAME=? WHERE ID=?";
         try {
-            jdbcTemplate.update("UPDATE USERS SET ? = ? WHERE ID = ?", fieldName, newValue, user.getId());
+            jdbcTemplate.update(sql, user.getUsername(), user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getId());
         } catch(Exception e){
             e.printStackTrace();
             return false;
