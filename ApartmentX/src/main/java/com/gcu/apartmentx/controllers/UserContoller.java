@@ -55,7 +55,7 @@ public class UserContoller {
     	if (firstName != null && !firstName.isBlank()) user.setFirstName(firstName);
     	if (lastName != null && !lastName.isBlank()) user.setLastName(lastName);
 
-    	// Update the object in the database
+    	// Update the user in the database
     	service.update(user);
     	
     	// Send the user back to the users page
@@ -69,7 +69,7 @@ public class UserContoller {
         return "ConfirmDeleteUser";
     }
 
-    @PostMapping("/users/delete/isconfirmed")
+    @PostMapping("/users/delete/do-delete")
     public String doDeleteUser(Model m, @RequestParam boolean confirm, RedirectAttributes redirectAttributes) {
         if (confirm) {
             service.delete(user.getId());

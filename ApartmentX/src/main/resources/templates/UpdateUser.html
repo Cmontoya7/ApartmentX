@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" th:href="@{/Styles.css}">
 </head>
-<body style="background-image: url(/images/stock-photo3.jpg); background-size: cover">
+<body>
     <div layout:fragment="content" class="form">
         <h1 id="form-header">Update User Information</h1>
         <h4>Enter in the new information in the following boxes. Any boxes left empty will not be updated</h4>
@@ -32,8 +32,8 @@
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: center;">
-                        <button class="btn btn-success" type="submit">Update</button>
-                        <a class="btn btn-danger" th:href="@{/users}">Cancel</a>
+                        <button class="btn btn-info" type="submit">Update</button>
+                        <a class="btn btn-primary" th:href="@{/users}">Cancel</a>
                     </td>
                 </tr>
             </table>

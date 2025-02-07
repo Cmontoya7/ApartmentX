@@ -35,17 +35,53 @@ public class ListingController {
     	return "Listings";
     }
 
+    @PostMapping("/listings/update")
+    public String updateApartment(Model m, @RequestParam int id) {
+        ApartmentEntity apartment = apartmentService.findById(id);
+        m.addAttribute("apartment", apartment);
+        return "UpdateApartment";
+    }
+
+    @PostMapping("/listings/update/do-update")
+    public String doUpdate(
+            @RequestParam int id,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer numBeds,
+            @RequestParam(required = false) Integer numBaths,
+            @RequestParam(required = false) Integer floorSpace,
+            @RequestParam(required = false) Float price,
+            @RequestParam(required = false) Integer quantity,
+            RedirectAttributes redirectAttributes
+    ) {
+        // Get the current apartment information
+        ApartmentEntity apartment = apartmentService.findById(id);
+
+        // Only update fields if they are not null or blank spaces
+        if (name != null && !name.isBlank()) apartment.setName(name);
+        if (numBeds != null) apartment.setNumBeds(numBeds);
+        if (numBaths != null) apartment.setNumBaths(numBaths);
+        if (floorSpace != null) apartment.setFloorSpace(floorSpace);
+        if (price != null) apartment.setPrice(price);
+        if (quantity != null) apartment.setQuantity(quantity);
+
+        // Update the apartment in the database
+        apartmentService.update(apartment);
+
+        // Redirect back to the apartments page
+        return "redirect:/listings";
+    }
+
   //Post request (receiving from Listing.html) that handles when a user selects "Delete" on an apartment
-    @PostMapping("/deleteApartment/confirm")
-    public String confirmDeleteApartment(Model m, @RequestParam(value = "action", required = false) int id) {
+    @PostMapping("/listings/delete")
+    public String confirmDeleteApartment(Model m, @RequestParam int id) {
         apartment = apartmentService.findById(id); //passes the ApartmentEntity's "id" attribute to the findById method to find the selected item in the database
         m.addAttribute("apartment", apartment); //passes the item (found by its id) to the ConfirmDeleteApartment HTML 
         return "ConfirmDeleteApartment";
     }
 
     //Post request that handles the function of confirming the deletion of a selected apartment 
-    @PostMapping("/deleteApartment/isconfirmed")
-    public String doDeleteApartment(Model m, @RequestParam(value = "action", required = false) boolean confirm, RedirectAttributes redirectAttributes) {
+    @PostMapping("/listings/delete/do-delete")
+    public String doDeleteApartment(Model m, @RequestParam boolean confirm, RedirectAttributes redirectAttributes) {
         if (confirm) { 
         	apartmentService.delete(apartment.getId());
             String msg = "Apartment: " + apartment.getName() + " was Deleted";
@@ -53,7 +89,7 @@ public class ListingController {
         }
         List<ApartmentEntity> apartments = apartmentService.findAll();
         m.addAttribute("apartments", apartments);
-        return "Listings";
+        return "redirect:/listings";
     }
 
 }
