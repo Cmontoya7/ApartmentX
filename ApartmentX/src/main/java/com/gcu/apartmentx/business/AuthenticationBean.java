@@ -4,6 +4,7 @@ import com.gcu.apartmentx.data.UserDataService;
 import com.gcu.apartmentx.data.entities.UserEntity;
 import com.gcu.apartmentx.data.repositories.UserRepository;
 import com.gcu.apartmentx.models.ApartmentXUser;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -16,23 +17,18 @@ public class AuthenticationBean implements AuthenticationInterface {
 
     public String authenticate(String username, String password) {
     	authenticationResult = false;
-        // Pseudo-Database for users
-        List<UserEntity> userEntities = service.findAll();
-        List<ApartmentXUser> userList = new ArrayList<>();
 
-        for (UserEntity u : userEntities) {
-            userList.add(new ApartmentXUser(u.getType(), u.getUsername(), u.getEmail(), u.getPassword(), u.getFirstName(), u.getLastName()));
-        }
+        List<UserEntity> userEntities = service.findAll();
         // Authentication of Username and Password
         String msg = "message null";
         boolean userExists = false;
         boolean passwordMatch = false;
-        for (ApartmentXUser user : userList) {
+        for (UserEntity user : userEntities) {
             if (user.getUsername().equals(username)) {
                 userExists = true;
                 if (user.getPassword().equals(password)) {
                     passwordMatch = true;
-                    msg = user.getNameFirst() + ":" + user.getType();
+                    msg = user.getFirstName() + ":" + user.getType() + ":" + user.getId();
                     authenticationResult = true;
                     break;
                 }
