@@ -15,8 +15,8 @@
   				<th style="text-align:center">Square Footage</th>
   				<th style="text-align:center">Price</th>
   				<th style="text-align:center">Quantity Available</th>
-				<th style="text-align:center">Update Listing</th>
-				<th style="text-align:center">Delete Listing</th>
+				<th th:if="${session.level != 'Tenant'}" style="text-align:center">Update Listing</th>
+				<th th:if="${session.level != 'Tenant'}" style="text-align:center">Delete Listing</th>
   			</tr>
   		</thead>
 		<tbody>
@@ -30,15 +30,15 @@
 				 <td><h5 th:text="${apartment.floorSpace}">Floor Space</h5></td>
 				 <td><h5 th:text="'$' + ${#numbers.formatDecimal(apartment.price, 1, 2)}">Price</h5></td>
 				 <td><h5 th:text="${apartment.quantity}">Quantity</h5></td>
-				 <td style="text-align: center;">
- 				    <form th:action="@{/listings/update}" method="post">
- 				    	<button class="btn btn-info" type="submit" th:name="id" th:value="${apartment.id}">Update</button>
- 				 	</form>
- 				 </td>
-				 <td style="text-align: center;">
-				    <form th:action="@{/listings/delete}" method="post">
-				    	<button class="btn btn-danger" type="submit" th:name="id" th:value="${apartment.id}">Delete</button>
-				 	</form>
+				 <td th:if="${session.level != 'Tenant'}" style="text-align: center;">
+						<form th:action="@{/listings/update}" method="post">
+							<button class="btn btn-info" type="submit" th:name="id" th:value="${apartment.id}">Update</button>
+						</form>
+				 </td>
+				 <td th:if="${session.level != 'Tenant'}" style="text-align: center;">
+						<form th:action="@{/listings/delete}" method="post">
+							<button class="btn btn-danger" type="submit" th:name="id" th:value="${apartment.id}">Delete</button>
+						</form>
 				 </td>
 			</tr>
 		</tbody>

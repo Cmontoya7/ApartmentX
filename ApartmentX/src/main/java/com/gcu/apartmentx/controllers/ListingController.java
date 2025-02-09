@@ -17,6 +17,8 @@ import com.gcu.apartmentx.data.ApartmentDataService;
 import com.gcu.apartmentx.data.entities.ApartmentEntity;
 import com.gcu.apartmentx.models.ApartmentModel;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class ListingController {
 
@@ -51,7 +53,9 @@ public class ListingController {
             @RequestParam(required = false) Integer floorSpace,
             @RequestParam(required = false) Float price,
             @RequestParam(required = false) Integer quantity,
-            RedirectAttributes redirectAttributes
+            RedirectAttributes redirectAttributes,
+            HttpSession session,
+            Model m
     ) {
         // Get the current apartment information
         ApartmentEntity apartment = apartmentService.findById(id);
@@ -68,6 +72,7 @@ public class ListingController {
         apartmentService.update(apartment);
 
         // Redirect back to the apartments page
+        m.addAttribute("session", session);
         return "redirect:/listings";
     }
 
