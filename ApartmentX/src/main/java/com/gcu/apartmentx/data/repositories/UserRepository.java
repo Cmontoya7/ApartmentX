@@ -10,4 +10,5 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
     @Override
     @Query(value = "SELECT * FROM USERS")
     public List<UserEntity> findAll();
+    public UserEntity findByUsername(String username);
 }

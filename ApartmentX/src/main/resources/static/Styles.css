@@ -77,8 +77,6 @@ tbody tr:last-child{
 	border-bottom: none;
 }
 
-
-
 h5{
 	margin: 15px;
 }
@@ -94,7 +92,7 @@ th, td {
     text-align: center;
 }
 
-.nav :last-child{
+.nav li:last-child{
 	padding-right: 20px;
 }
 
@@ -110,4 +108,16 @@ th, td {
 	font-family: 'Baskerville Old Face', serif;
 	background: none;
 	border: none;
+	padding-right: 20px;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-default * {
+    color: rgb(51, 99, 152) !important; 
+    font-size: large; 
+    font-family: 'Baskerville Old Face', serif;
 }

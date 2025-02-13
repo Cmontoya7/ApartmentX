@@ -26,13 +26,13 @@
                         <li th:if="${session.username == null}"><a th:href="@{/login}">Login</a></li>
                         <li th:if="${session.username == null}"><a th:href="@{/register}">Register</a></li>
                         <li th:if="${session.username != null}">
-                            <form th:action="@{/users/update}" method="post" style="padding-top: 10px">
+                            <form th:action="@{/users/update}" method="post">
                                 <input type="hidden" th:name="id" th:value="${session.id}"/>
                                 <button th:text="'Welcome, ' + ${session.username}"></button>
                             </form>
                         </li>
                         <li th:if="${session.username != null}">
-                            <a class="nav :last-child" th:href="@{/logout}">Logout</a>
+                            <a th:href="@{/logout}">Logout</a>
                         </li>
                     </ul>
                 </div>

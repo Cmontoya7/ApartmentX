@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserDataService implements DataAccessInterface<UserEntity> {
+public class UserDataService implements DataAccessInterface<UserEntity>,UsersDataAccessInterface<UserEntity> {
     @Autowired
     private UserRepository userRepository;
     @SuppressWarnings("unused")
@@ -84,4 +84,11 @@ public class UserDataService implements DataAccessInterface<UserEntity> {
         }
         return true;
     }
+
+
+	@Override
+	public UserEntity findByUsername(String username)
+	{
+		return userRepository.findByUsername(username);
+	}
 }
