@@ -103,3 +103,11 @@ th, td {
 	font-size: large; 
 	font-family: 'Baskerville Old Face', serif;
 }
+
+.navbar-default button{
+	color: rgb(51, 99, 152) !important;
+	font-size: large;
+	font-family: 'Baskerville Old Face', serif;
+	background: none;
+	border: none;
+}

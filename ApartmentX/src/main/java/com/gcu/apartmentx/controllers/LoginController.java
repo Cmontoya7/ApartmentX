@@ -48,8 +48,10 @@ public class LoginController {
             String[] split = msg.split(":");
             String msg1 = split[0];
             String msg2 = split[1];
+            String msg3 = split[2];
             session.setAttribute("username", msg1);
             session.setAttribute("level", msg2);
+            session.setAttribute("id", msg3);
             return "Homepage";
         }
     }

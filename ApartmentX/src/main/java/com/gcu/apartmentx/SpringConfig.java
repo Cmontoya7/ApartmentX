@@ -20,7 +20,7 @@ public class SpringConfig
 	}
 	
 	@Bean(name="authenticationBean", initMethod="init", destroyMethod="destroy")
-	@RequestScope
+	@SessionScope
 	public AuthenticationBean authenticate()
 	{
 		return new AuthenticationBean();

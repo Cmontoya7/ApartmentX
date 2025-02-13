@@ -17,22 +17,18 @@ public class AuthenticationBean implements AuthenticationInterface {
     public String authenticate(String username, String password) {
     	authenticationResult = false;
         // Pseudo-Database for users
-        List<UserEntity> userEntities = service.findAll();
-        List<ApartmentXUser> userList = new ArrayList<>();
+        List<UserEntity> userList = service.findAll();
 
-        for (UserEntity u : userEntities) {
-            userList.add(new ApartmentXUser(u.getType(), u.getUsername(), u.getEmail(), u.getPassword(), u.getFirstName(), u.getLastName()));
-        }
         // Authentication of Username and Password
         String msg = "message null";
         boolean userExists = false;
         boolean passwordMatch = false;
-        for (ApartmentXUser user : userList) {
+        for (UserEntity user : userList) {
             if (user.getUsername().equals(username)) {
                 userExists = true;
                 if (user.getPassword().equals(password)) {
                     passwordMatch = true;
-                    msg = user.getNameFirst() + ":" + user.getType();
+                    msg = user.getFirstName() + ":" + user.getType() + ":" + user.getId();
                     authenticationResult = true;
                     break;
                 }
