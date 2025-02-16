@@ -6,6 +6,9 @@ import com.gcu.apartmentx.data.UserDataService;
 import com.gcu.apartmentx.data.entities.UserEntity;
 import com.gcu.apartmentx.models.ApartmentXUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +32,7 @@ public class RegisterController {
     @PostMapping("/register/submitRegistration")
     public String submitRegistrationForm(@ModelAttribute ApartmentXUser user, @RequestParam(value = "action", required = false) String type) {
         // Send the user to the success page if the registration works
-    	if (register.addUser(type, user.getUsername(), user.getEmail(), user.getPassword(), user.getNameFirst(), user.getNameLast()))
+    	if (register.addUser(type, user.getUsername(), user.getEmail(), new BCryptPasswordEncoder().encode(user.getPassword()), user.getNameFirst(), user.getNameLast()))
     	{
     		return "RegisterSuccess";
     	}
