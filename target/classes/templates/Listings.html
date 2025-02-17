@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+	<link rel="stylesheet" th:href="@{/Styles.css}">
+</head>
+<body>
+<div layout:fragment="content" class="listing">
+  <h1 id="form-header">Listings</h1>
+  <table>
+  		<thead class="listing-columns">
+  			<tr class="listing-columns th">
+  				<th style="text-align:center">Name</th>
+  				<th style="text-align:center">Number of Beds</th>
+				<th style="text-align:center">Number of Baths</th>
+  				<th style="text-align:center">Square Footage</th>
+  				<th style="text-align:center">Price</th>
+  				<th style="text-align:center">Quantity Available</th>
+				<th th:if="${session.level != 'Tenant'}" style="text-align:center">Update Listing</th>
+				<th th:if="${session.level != 'Tenant'}" style="text-align:center">Delete Listing</th>
+  			</tr>
+  		</thead>
+		<tbody>
+			<tr th:if="${apartments == null or apartments.isEmpty()}">
+				<td>No Listings Yet</td>
+			</tr>
+			<tr th:each="apartment : ${apartments}">
+				 <td><h5 th:text="${apartment.name}">Title</h5></td>
+				 <td><h5 th:text="${apartment.numBeds}">Beds</h5></td>
+				 <td><h5 th:text="${apartment.numBaths}">Baths</h5></td>
+				 <td><h5 th:text="${apartment.floorSpace}">Floor Space</h5></td>
+				 <td><h5 th:text="'$' + ${#numbers.formatDecimal(apartment.price, 1, 2)}">Price</h5></td>
+				 <td><h5 th:text="${apartment.quantity}">Quantity</h5></td>
+				 <td th:if="${session.level != 'Tenant'}" style="text-align: center;">
+						<form th:action="@{/listings/update}" method="post">
+							<button class="btn btn-info" type="submit" th:name="id" th:value="${apartment.id}">Update</button>
+						</form>
+				 </td>
+				 <td th:if="${session.level != 'Tenant'}" style="text-align: center;">
+						<form th:action="@{/listings/delete}" method="post">
+							<button class="btn btn-danger" type="submit" th:name="id" th:value="${apartment.id}">Delete</button>
+						</form>
+				 </td>
+			</tr>
+		</tbody>
+  	</table>
+  </div>
+</body>
+</html>

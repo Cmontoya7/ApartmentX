@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+	<link rel="stylesheet" th:href="@{/Styles.css}">
+</head>
+<body style="background-image: url(/images/stock-photo3.jpg); background-size: cover">
+<div layout:fragment="content" class="form">
+    <h1 id="form-header">Are You Sure You Would Like to Delete:</h1>
+    <h2 th:text="'Username: ' + ${user.username}"></h2>
+    <h2 th:text="'First Name: ' + ${user.firstName}"></h2>
+    <h2 th:text="'Last Name: ' + ${user.lastName}"></h2>
+	<br />
+    <form th:action="@{/users/delete/do-delete}" th:method="post">
+        <button th:name="confirm" th:value="${true}" class="btn btn-danger">Confirm</button>
+        <button th:name="confirm" th:value="${false}" class="btn btn-primary">Cancel</button>
+    </form>
+</div>
+</body>
+</html>

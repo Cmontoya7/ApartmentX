@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+  <head>
+      <meta charset="UTF-8">
+      <title>Register</title>
+	  <link rel="stylesheet" th:href="@{/Styles.css}">
+  </head>
+  <body>
+  <div layout:fragment="content" class="form">
+  <h1 id="form-header">Register</h1>
+	<form th:action="@{/register/submitRegistration}" method="post">
+		<!-- Email Input -->
+		<label for="email">Email:</label><br>
+		<input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+		<!-- Username -->
+		<label for="username">Username:</label><br>
+		<input type="text" id="username" name="username" placeholder="Enter your username" required><br><br>
+        <!-- Password Input -->
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required><br><br>
+		<!-- Password Confirm -->
+		<label for="password-confirm">Confirm Password:</label><br>
+		<input type="password" id="password-confirm" name="password-confirm" placeholder="Re-type your password" required><br><br>
+		<!-- First Name -->
+		<label for="name-first">First Name:</label><br>
+		<input type="text" id="name-first" name="nameFirst" placeholder="Enter your first name" required><br><br>
+		<!-- Last Name -->
+		<label for="name-last">Last Name:</label><br>
+		<input type="text" id="name-last" name="nameLast" placeholder="Enter your last name" required><br><br>
+		<!-- Submit Button -->
+		<button type="submit" class="btn btn-primary" th:name="action" th:value="Tenant">Register As Tenant</button>
+		<button type="submit" class="btn btn-primary" th:name="action" th:value="Landlord">Register As Landlord</button>
+		<button type="submit" class="btn btn-primary" th:name="action" th:value="Admin">Register As Admin</button>
+    </form>
+  </div>
+  </body>
+</html>
+
+<script>
+	//Password validation
+	document.getElementById("password-confirm").addEventListener("input", function () {
+	        const password = document.getElementById("password").value;
+	        const passwordConfirm = document.getElementById("password-confirm").value;
+	        if (password !== passwordConfirm)
+	            document.getElementById("password-confirm").setCustomValidity("Passwords do not match!");
+	        else
+	            document.getElementById("password-confirm").setCustomValidity("");
+	    });
+</script>
