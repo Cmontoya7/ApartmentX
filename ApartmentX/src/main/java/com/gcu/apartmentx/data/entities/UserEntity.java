@@ -24,6 +24,7 @@ public class UserEntity {
 
     public UserEntity() {}
 
+	// Constructor without adminPassword (for Tenant/Landlord)
     public UserEntity(int id, String type, String username, String email, String password, String firstName, String lastName) {
         this.id = id;
         this.type = type;
