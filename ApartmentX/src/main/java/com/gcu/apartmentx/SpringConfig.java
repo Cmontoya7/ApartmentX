@@ -5,31 +5,31 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
 
-import com.gcu.apartmentx.business.ApartmentBean;
-import com.gcu.apartmentx.business.AuthenticationBean;
-import com.gcu.apartmentx.business.RegistrationBean;
+import com.gcu.apartmentx.business.ApartmentBusinessService;
+import com.gcu.apartmentx.business.AuthenticationBusinessService;
+import com.gcu.apartmentx.business.RegistrationBusinessService;
 
 @Configuration
 public class SpringConfig
 {
 	@Bean(name="apartmentBeanConfig", initMethod="init", destroyMethod="destroy")
 	@SessionScope // This will be changed to RequestScope when the database is implemented
-	public ApartmentBean addApartment()
+	public ApartmentBusinessService addApartment()
 	{
-		return new ApartmentBean();
+		return new ApartmentBusinessService();
 	}
 	
 	@Bean(name="authenticationBean", initMethod="init", destroyMethod="destroy")
 	@SessionScope
-	public AuthenticationBean authenticate()
+	public AuthenticationBusinessService authenticate()
 	{
-		return new AuthenticationBean();
+		return new AuthenticationBusinessService();
 	}
 	
 	@Bean(name="registrationBean", initMethod="init", destroyMethod="destroy")
 	@SessionScope // This will be changed to RequestScope when the database is implemented
-	public RegistrationBean addUser()
+	public RegistrationBusinessService addUser()
 	{
-		return new RegistrationBean();
+		return new RegistrationBusinessService();
 	}
 }

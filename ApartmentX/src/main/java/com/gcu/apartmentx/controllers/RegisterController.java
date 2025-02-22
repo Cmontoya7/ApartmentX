@@ -1,6 +1,6 @@
 package com.gcu.apartmentx.controllers;
 
-import com.gcu.apartmentx.business.RegistrationBean;
+import com.gcu.apartmentx.business.RegistrationBusinessService;
 import com.gcu.apartmentx.business.RegistrationInterface;
 import com.gcu.apartmentx.data.UserDataService;
 import com.gcu.apartmentx.data.entities.UserEntity;
@@ -28,7 +28,7 @@ public class RegisterController {
 	private String encryptedAdminPassword;
 	
     @Autowired
-    private RegistrationInterface register = new RegistrationBean();
+    private RegistrationInterface register = new RegistrationBusinessService();
     
     @GetMapping("/register")
     public String register() {

@@ -77,7 +77,8 @@ public class ApartmentDataService implements DataAccessInterface<ApartmentEntity
 
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(ApartmentEntity apartment) {
+    	int id = apartment.getId();
         try {
             jdbcTemplate.update("DELETE FROM APARTMENTS WHERE ID = ?", id);
         }catch(Exception e){

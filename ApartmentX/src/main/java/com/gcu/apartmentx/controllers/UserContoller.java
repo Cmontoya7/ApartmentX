@@ -73,7 +73,7 @@ public class UserContoller {
     @PostMapping("/users/delete/do-delete")
     public String doDeleteUser(Model m, @RequestParam boolean confirm) {
         if (confirm) {
-            service.delete(user.getId());
+            service.delete(user);
             String msg = "Username: " + user.getUsername() + " was Deleted";
             m.addAttribute("msg", msg);
         }

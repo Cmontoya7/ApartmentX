@@ -75,7 +75,8 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(UserEntity user) {
+    	int id = user.getId();
         try {
             jdbcTemplate.update("DELETE FROM USERS WHERE ID = ?", id);
         }catch(Exception e){
