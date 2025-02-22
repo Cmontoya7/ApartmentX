@@ -2,6 +2,7 @@ package com.gcu.apartmentx.business;
 
 import com.gcu.apartmentx.data.ApartmentDataService;
 import com.gcu.apartmentx.data.entities.ApartmentEntity;
+import com.gcu.apartmentx.data.repositories.ApartmentRepository;
 import com.gcu.apartmentx.models.ApartmentModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,18 @@ public class ApartmentBusinessService implements ApartmentInterface {
     private ApartmentDataService apartmentDataService;
     
     public ApartmentBusinessService() {}
+    
+    @Autowired
+    private ApartmentRepository apartmentRepository;
+    
+    public ApartmentBusinessService(ApartmentRepository apartmentRepository) {
+    	this.apartmentRepository = apartmentRepository;
+    }
 
     @Override
     public List<ApartmentModel> getAllApartments() {
     	
-    	List<ApartmentEntity> apartmentEntities = apartmentDataService.findAll();
+    	List<ApartmentEntity> apartmentEntities = apartmentRepository.findAll();
     	List<ApartmentModel> apartments = new ArrayList<>();
     	
     	for (ApartmentEntity entity : apartmentEntities) {
