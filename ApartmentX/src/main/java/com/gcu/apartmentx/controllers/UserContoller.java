@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -73,7 +72,7 @@ public class UserContoller {
     @PostMapping("/users/delete/do-delete")
     public String doDeleteUser(Model m, @RequestParam boolean confirm) {
         if (confirm) {
-            service.delete(user.getId());
+            service.delete(user);
             String msg = "Username: " + user.getUsername() + " was Deleted";
             m.addAttribute("msg", msg);
         }

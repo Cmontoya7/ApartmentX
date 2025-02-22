@@ -1,7 +1,7 @@
 package com.gcu.apartmentx.models;
 
 public class ApartmentModel {
-	
+	private int id;
     private String name;
     private int numBeds;
     private int numBaths;
@@ -9,7 +9,26 @@ public class ApartmentModel {
     private float price;
     private int quantity;
 
-
+    public ApartmentModel() {
+    	this.id = 0;
+        this.name = "";
+        this.numBeds = 0;
+        this.numBaths = 0;
+        this.floorSpace = 0;
+        this.price = 0;
+        this.quantity = 0;
+    }
+    
+    public ApartmentModel(int id, String name, int numBeds, int numBaths, int floorSpace, float price, int quantity) {
+    	this.id = id;
+        this.name = name;
+        this.numBeds = numBeds;
+        this.numBaths = numBaths;
+        this.floorSpace = floorSpace;
+        this.price = price;
+        this.quantity = quantity;
+    }
+    
     public ApartmentModel(String name, int numBeds, int numBaths, int floorSpace, float price, int quantity) {
         this.name = name;
         this.numBeds = numBeds;
@@ -19,7 +38,13 @@ public class ApartmentModel {
         this.quantity = quantity;
     }
 
-    public String getName() {
+    public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
         return name;
     }
     public void setName(String name) {

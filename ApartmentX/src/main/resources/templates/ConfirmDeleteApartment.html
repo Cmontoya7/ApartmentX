@@ -9,6 +9,7 @@
     <h2 th:text="${apartment.name}"></h2>
 	<br />
     <form th:action="@{/listings/delete/do-delete}" th:method="post">
+		<input type="hidden" name="apartmentId" th:value="${apartment.id}"/>
         <button th:name="confirm" th:value="${true}" class="btn btn-danger">Confirm</button>
         <button th:name="confirm" th:value="${false}" class="btn btn-primary">Cancel</button>
     </form>

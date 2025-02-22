@@ -1,10 +1,7 @@
 package com.gcu.apartmentx.data;
 
 import com.gcu.apartmentx.data.entities.ApartmentEntity;
-import com.gcu.apartmentx.data.entities.UserEntity;
 import com.gcu.apartmentx.data.repositories.ApartmentRepository;
-import com.gcu.apartmentx.data.repositories.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -77,7 +74,8 @@ public class ApartmentDataService implements DataAccessInterface<ApartmentEntity
 
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(ApartmentEntity apartment) {
+    	int id = apartment.getId();
         try {
             jdbcTemplate.update("DELETE FROM APARTMENTS WHERE ID = ?", id);
         }catch(Exception e){

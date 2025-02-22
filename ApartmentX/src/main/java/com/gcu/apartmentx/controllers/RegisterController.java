@@ -1,23 +1,15 @@
 package com.gcu.apartmentx.controllers;
 
-import com.gcu.apartmentx.business.RegistrationBean;
 import com.gcu.apartmentx.business.RegistrationInterface;
-import com.gcu.apartmentx.data.UserDataService;
-import com.gcu.apartmentx.data.entities.UserEntity;
-import com.gcu.apartmentx.models.ApartmentXUser;
+import com.gcu.apartmentx.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,7 +20,7 @@ public class RegisterController {
 	private String encryptedAdminPassword;
 	
     @Autowired
-    private RegistrationInterface register = new RegistrationBean();
+    private RegistrationInterface register;
     
     @GetMapping("/register")
     public String register() {
@@ -36,7 +28,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register/submitRegistration")
-    public String submitRegistrationForm(@ModelAttribute ApartmentXUser user, @RequestParam(value = "action", required = false) String type, HttpSession session) {
+    public String submitRegistrationForm(@ModelAttribute UserModel user, @RequestParam(value = "action", required = false) String type, HttpSession session) {
         // if the user selects "Admin" when creating an account, the AdminRegister page will be displayed
     	if (type.equals("Admin")) {
         	session.setAttribute("user", user); //create a session attribute to be accessed from another method
@@ -57,9 +49,9 @@ public class RegisterController {
     
     // receives a POST request from the AdminRegister view to verify the provided admin password.
     @PostMapping("/register/submitAdminRegistration")
-    public String submitAdminPasssword(@RequestParam(value = "adminPassword", required = true) String adminPassword, @RequestParam(value = "action", required = false) String type, HttpSession session, @ModelAttribute ApartmentXUser user) {
+    public String submitAdminPasssword(@RequestParam(value = "adminPassword", required = true) String adminPassword, @RequestParam(value = "action", required = false) String type, HttpSession session, @ModelAttribute UserModel user) {
     	//ApartmentXUser object is retrieved from the session attributes 
-    	ApartmentXUser registeredUser = (ApartmentXUser) session.getAttribute("user");
+    	UserModel registeredUser = (UserModel) session.getAttribute("user");
     	
     	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     	
