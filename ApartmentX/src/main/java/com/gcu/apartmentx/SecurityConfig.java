@@ -18,26 +18,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	private UserBusinessService service;
 
 	protected void configure(HttpSecurity http) throws Exception {
-	    http.csrf().disable()
-	        .authorizeRequests()
-		        .antMatchers("/Styles.css","/images/**").permitAll()
-	            .antMatchers("/", "/display0AuthCode", "/register", "/register/submitRegistration").permitAll()
-	            .antMatchers("/", "/display0AuthCode", "/register", "/register/submitAdminRegistration").permitAll()
-	            .anyRequest().authenticated()
-	        .and()
-	        .formLogin()
-	            .loginPage("/login")
-	            .usernameParameter("username")
-	            .passwordParameter("password")
-	            .permitAll()
-	            .defaultSuccessUrl("/login-success", true)
-	        .and()
-	        .logout()
-	            .logoutUrl("/logout")
-	            .invalidateHttpSession(true)
-	            .clearAuthentication(true)
-	            .permitAll()
-	            .logoutSuccessUrl("/");
+        http.csrf(csrf -> csrf.disable())
+                .authorizeRequests(requests -> requests
+                		// Add files that all users should have access to here
+                        .antMatchers("/Styles.css", "/images/**").permitAll()
+                        // Add URLs that all users should have access to here
+                        .antMatchers("/", "/display0AuthCode", "/register", "/register/submitRegistration", "/register/submitAdminRegistration").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .permitAll()
+                        .defaultSuccessUrl("/login-success", true))
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .permitAll()
+                        .logoutSuccessUrl("/"));
 	}
 
 	
