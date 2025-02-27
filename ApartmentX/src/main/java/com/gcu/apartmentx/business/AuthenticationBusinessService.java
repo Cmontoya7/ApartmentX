@@ -2,11 +2,8 @@ package com.gcu.apartmentx.business;
 
 import com.gcu.apartmentx.data.UserDataService;
 import com.gcu.apartmentx.data.entities.UserEntity;
-import com.gcu.apartmentx.data.repositories.UserRepository;
-import com.gcu.apartmentx.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AuthenticationBusinessService implements AuthenticationInterface {

@@ -3,9 +3,6 @@ package com.gcu.apartmentx.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gcu.apartmentx.business.ApartmentInterface;
@@ -28,6 +24,7 @@ public class ApartmentController {
 	@Autowired
 	private ApartmentInterface apartmentInterface;
 
+	//finds all apartments and displays them to the Listings view
 	@GetMapping("/getlistings")
 	public String listings(Model model) {
 		List<ApartmentModel> apartments = apartmentInterface.getAllApartments();
@@ -37,6 +34,7 @@ public class ApartmentController {
 		return "Listings";
 	}
 
+	// obtains the Apartment associated with the selected id, and passes it to the UpdateApartment view
 	@PostMapping("/update")
 	public String updateApartment(Model m, @RequestParam int id) {
 		ApartmentModel apartment = apartmentInterface.findApartmentById(id);
@@ -44,6 +42,7 @@ public class ApartmentController {
 		return "UpdateApartment";
 	}
 
+	// retrieves new inputs representing the Model's properties and sets that Model's existing properties to the new ones 
 	@PostMapping("/update/do-update")
 	public String doUpdate(@RequestParam int id, @RequestParam(required = false) String name,
 			@RequestParam(required = false) Integer numBeds, @RequestParam(required = false) Integer numBaths,
@@ -108,6 +107,7 @@ public class ApartmentController {
 		return "Create";
 	}
 
+	// creates a Model based on the input passed from the view gathered from the user, and calls the interface to create an instance based on the input
 	@PostMapping("/create/submit")
 	public String submitProduct(@ModelAttribute ApartmentModel apartment, Model model) {
 		String msg = apartmentInterface.addApartment(apartment);

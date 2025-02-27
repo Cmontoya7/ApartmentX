@@ -18,14 +18,15 @@ public class UserContoller {
 
     @Autowired
     private UserDataService service;
-
+	
+    //finds all users and displays them to the Users view
     @GetMapping("/users")
     public String deleteUser(Model m) {
         List<UserEntity> users = service.findAll();
         m.addAttribute("users", users);
         return "Users";
     }
-
+    // obtains the User associated with the selected id, and passes it to the UpdateUser view
     @PostMapping("/users/update")
     public String updateUser(Model m, @RequestParam int id) {
         user = service.findById(id);
@@ -33,6 +34,7 @@ public class UserContoller {
         return "UpdateUser";
     }
     
+    // retrieves new inputs representing the Model's properties and sets that Model's existing properties to the new ones 
     @PostMapping("/users/update/do-update")
     public String doUpdate(
     		// Get parameters from the HTML form
@@ -62,6 +64,8 @@ public class UserContoller {
     	return "redirect:/users";
     }
     
+    // Post request (receiving from Listing.html) that handles when a user selects
+ 	// "Delete" on an apartment
     @PostMapping("/users/delete")
     public String confirmDeleteUser(Model m, @RequestParam int id) {
         user = service.findById(id);
@@ -69,6 +73,8 @@ public class UserContoller {
         return "ConfirmDeleteUser";
     }
 
+	// Post request that handles the function of confirming the deletion of a
+	// selected apartment
     @PostMapping("/users/delete/do-delete")
     public String doDeleteUser(Model m, @RequestParam boolean confirm) {
         if (confirm) {
