@@ -25,6 +25,7 @@ public class ApartmentDataService implements DataAccessInterface<ApartmentEntity
     }
 
 
+    //finds all Entities living in the database and returns a list
     @Override
     public List<ApartmentEntity> findAll() {
         List<ApartmentEntity> apartments = new ArrayList<>();
@@ -36,6 +37,7 @@ public class ApartmentDataService implements DataAccessInterface<ApartmentEntity
         return apartments;
     }
 
+    //finds the Entity associated with the id passed to the method and returns that entity
     @Override
     public ApartmentEntity findById(int id) {
         List<ApartmentEntity> apartments = apartmentRepository.findAll();
@@ -47,10 +49,12 @@ public class ApartmentDataService implements DataAccessInterface<ApartmentEntity
         return null;
     }
 
+    //uses the entity to add it to the database
     @Override
     public boolean create(ApartmentEntity apartment) {
         String sql = "INSERT INTO APARTMENTS(NAME, NUMBER_BEDS, NUMBER_BATHS, FLOOR_SPACE, PRICE, QUANTITY) VALUES (?,?,?,?,?,?)";
         try{
+        	//gather the entity's properties to place within the database 
             jdbcTemplate.update(sql, apartment.getName(), apartment.getNumBeds(), apartment.getNumBaths(), apartment.getFloorSpace(), apartment.getPrice(), apartment.getQuantity());
         } catch(Exception e){
             e.printStackTrace();
@@ -59,6 +63,7 @@ public class ApartmentDataService implements DataAccessInterface<ApartmentEntity
         return true;
     }
 
+    //uses the updated entity to update the current outdated properties associated with the new one
     @Override
     public boolean update(ApartmentEntity apartment) {
         String sql = "UPDATE APARTMENTS SET NAME = ?, NUMBER_BEDS = ?, NUMBER_BATHS = ?, FLOOR_SPACE = ?, PRICE = ?, QUANTITY = ? WHERE ID = ?";
@@ -73,6 +78,7 @@ public class ApartmentDataService implements DataAccessInterface<ApartmentEntity
     }
 
 
+    //grab the id associated with the entity passed to this method to delete the item from the database using the below query
     @Override
     public boolean delete(ApartmentEntity apartment) {
     	int id = apartment.getId();

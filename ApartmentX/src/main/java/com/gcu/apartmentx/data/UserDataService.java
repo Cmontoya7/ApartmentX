@@ -25,6 +25,7 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
     }
 
 
+    //uses the updated entity to update the current outdated properties associated with the new one
     @Override
     public List<UserEntity> findAll() {
         List<UserEntity> users = new ArrayList<>();
@@ -36,6 +37,7 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return users;
     }
 
+    //finds the Entity associated with the id passed to the method and returns that entity
     @Override
     public UserEntity findById(int id) {
         List<UserEntity> users = userRepository.findAll();
@@ -47,6 +49,7 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return null;
     }
 
+    //uses the entity to add it to the database
     @Override
     public boolean create(UserEntity user) {
     	// Create the SQL query template
@@ -62,6 +65,7 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return true;
     }
 
+    //uses the updated entity to update the current outdated properties associated with the new one
     @Override
     public boolean update(UserEntity user) {
     	String sql = "UPDATE USERS SET USERNAME=?, EMAIL=?, PASSWORD=?, FIRST_NAME=?, LAST_NAME=? WHERE ID=?";
@@ -74,6 +78,7 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return true;
     }
 
+    //grab the id associated with the entity passed to this method to delete the item from the database using the below query
     @Override
     public boolean delete(UserEntity user) {
     	int id = user.getId();
@@ -86,7 +91,7 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return true;
     }
 
-
+    //finds the Entity associated with the username passed to the method and returns that entity
 	@Override
 	public UserEntity findByUsername(String username)
 	{

@@ -18,8 +18,10 @@ import com.gcu.apartmentx.data.entities.UserEntity;
 @Service
 public class UserBusinessService implements UserDetailsService
 {
+	//Spring bean which interacts with the User repository
 	@Autowired
 	UserDataService service;
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
