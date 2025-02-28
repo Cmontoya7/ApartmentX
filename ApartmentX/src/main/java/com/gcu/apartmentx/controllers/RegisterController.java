@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * Controller class responsible for handling user registration functionality
+ * Provides methods for displaying registration form, submitting user registration, and handling admin registration
+ */
 @Controller
 public class RegisterController {
 
@@ -22,11 +26,22 @@ public class RegisterController {
     @Autowired
     private RegistrationInterface register;
     
+    /**
+     * Displays the registration form view when accessing the /register URL
+     * @return the registration view name
+     */
     @GetMapping("/register")
     public String register() {
         return "Register";
     }
 
+    /**
+     * Handles the submission of the registration form and either creates a normal user or redirects to the Admin registration page
+     * @param user the user model containing the registration information
+     * @param type the type of the user (e.g., Admin or regular user)
+     * @param session the current HTTP session to store user data
+     * @return the view name based on registration success or failure
+     */
     @PostMapping("/register/submitRegistration")
     public String submitRegistrationForm(@ModelAttribute UserModel user, @RequestParam(value = "action", required = false) String type, HttpSession session) {
         // if the user selects "Admin" when creating an account, the AdminRegister page will be displayed
@@ -46,8 +61,14 @@ public class RegisterController {
         return "RegisterFailure";
     }
     
-    
-    // receives a POST request from the AdminRegister view to verify the provided admin password.
+    /**
+     * Handles the admin registration process by verifying the provided admin password and creating the admin user if valid
+     * @param adminPassword the password entered by the admin to validate
+     * @param type the type of the user (Admin or regular user)
+     * @param session the current HTTP session containing user data
+     * @param user the user model containing the registration information
+     * @return the view name based on admin registration success or failure
+     */
     @PostMapping("/register/submitAdminRegistration")
     public String submitAdminPasssword(@RequestParam(value = "adminPassword", required = true) String adminPassword, @RequestParam(value = "action", required = false) String type, HttpSession session, @ModelAttribute UserModel user) {
     	//ApartmentXUser object is retrieved from the session attributes 

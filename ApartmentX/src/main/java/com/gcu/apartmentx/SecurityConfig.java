@@ -10,6 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.gcu.apartmentx.business.UserBusinessService;
 
+/**
+ * Security configuration class for the application
+ * Configures authentication and authorization settings
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter
@@ -17,6 +21,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Autowired
 	private UserBusinessService service;
 
+	/**
+     * Configures HTTP security settings for the application
+     * @param http the HttpSecurity object to configure
+     * @throws Exception if an error occurs while configuring security
+     */
 	protected void configure(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests(requests -> requests
@@ -38,8 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                         .permitAll()
                         .logoutSuccessUrl("/"));
 	}
-
 	
+	/**
+    * Configures authentication settings for the application
+    * @param auth the AuthenticationManagerBuilder object to configure
+    * @throws Exception if an error occurs while configuring authentication
+    */
 	@Autowired
 	public void configure(AuthenticationManagerBuilder auth) throws Exception
 	{

@@ -6,11 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+/**
+ * Service class for handling authentication logic
+ * Provides methods for authenticating users based on username and password
+ */
 public class AuthenticationBusinessService implements AuthenticationInterface {
     private boolean authenticationResult;
     @Autowired
     UserDataService service;
 
+    /**
+     * Authenticates a user based on username and password
+     * @param username the username to authenticate
+     * @param password the password to authenticate
+     * @return a message indicating the result of the authentication process
+     */
     public String authenticate(String username, String password) {
     	authenticationResult = false;
         // Pseudo-Database for users
@@ -42,15 +52,25 @@ public class AuthenticationBusinessService implements AuthenticationInterface {
         return msg;
     }
 
+    /**
+     * Retrieves the result of the last authentication attempt
+     * @return true if authentication was successful, false otherwise
+     */
     public boolean getAuthenticationResult() {
         return authenticationResult; // Getter to access the result
     }
 
+    /**
+     * Initializes the authentication bean
+     */
     @Override
     public void init() {
         System.out.println("AuthenticationBean init method call");
     }
 
+    /**
+     * Destroys the authentication bean
+     */
     @Override
     public void destroy() {
         System.out.println("AuthenticationBean destroy method call");

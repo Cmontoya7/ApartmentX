@@ -12,6 +12,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+/**
+ * Controller class responsible for handling user-related functionality
+ * Provides methods for displaying users, updating user information, and deleting users
+ */
 @Controller
 public class UserContoller {
     private UserEntity user;
@@ -19,14 +23,24 @@ public class UserContoller {
     @Autowired
     private UserDataService service;
 	
-    //finds all users and displays them to the Users view
+    /**
+     * Retrieves all users from the database and displays them in the "Users" view
+     * @param m the Model object used to pass data to the view
+     * @return the "Users" view name
+     */
     @GetMapping("/users")
     public String deleteUser(Model m) {
         List<UserEntity> users = service.findAll();
         m.addAttribute("users", users);
         return "Users";
     }
-    // obtains the User associated with the selected id, and passes it to the UpdateUser view
+
+    /**
+     * Retrieves a user by their ID and passes the user to the "UpdateUser" view for updating
+     * @param m the Model object used to pass the user to the view
+     * @param id the ID of the user to be updated
+     * @return the "UpdateUser" view name
+     */
     @PostMapping("/users/update")
     public String updateUser(Model m, @RequestParam int id) {
         user = service.findById(id);
@@ -34,7 +48,18 @@ public class UserContoller {
         return "UpdateUser";
     }
     
-    // retrieves new inputs representing the Model's properties and sets that Model's existing properties to the new ones 
+    /**
+     * Handles updating the user's information with the new input values
+     * Only updates non-null and non-blank fields
+     * @param id the ID of the user to be updated
+     * @param username the new username (optional)
+     * @param email the new email (optional)
+     * @param password the new password (optional)
+     * @param firstName the new first name (optional)
+     * @param lastName the new last name (optional)
+     * @param redirectAttributes used for redirection after the update
+     * @return redirects to the "/users" page after the update
+     */
     @PostMapping("/users/update/do-update")
     public String doUpdate(
     		// Get parameters from the HTML form
@@ -64,8 +89,12 @@ public class UserContoller {
     	return "redirect:/users";
     }
     
-    // Post request (receiving from Listing.html) that handles when a user selects
- 	// "Delete" on an apartment
+    /**
+     * Retrieves a user by their ID and displays the confirmation page for deleting the user
+     * @param m the Model object used to pass the user to the view
+     * @param id the ID of the user to be deleted
+     * @return the "ConfirmDeleteUser" view name
+     */
     @PostMapping("/users/delete")
     public String confirmDeleteUser(Model m, @RequestParam int id) {
         user = service.findById(id);
@@ -73,8 +102,13 @@ public class UserContoller {
         return "ConfirmDeleteUser";
     }
 
-	// Post request that handles the function of confirming the deletion of a
-	// selected apartment
+    /**
+     * Handles the deletion of the user if the confirmation is true
+     * After deletion, redirects to the "/users" page with the updated list of users
+     * @param m the Model object used to pass messages to the view
+     * @param confirm whether the deletion is confirmed or not
+     * @return redirects to the "/users" page after deletion
+     */
     @PostMapping("/users/delete/do-delete")
     public String doDeleteUser(Model m, @RequestParam boolean confirm) {
         if (confirm) {

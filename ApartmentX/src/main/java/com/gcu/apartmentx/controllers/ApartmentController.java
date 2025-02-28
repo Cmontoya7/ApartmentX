@@ -17,6 +17,10 @@ import com.gcu.apartmentx.models.ApartmentModel;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * Controller class responsible for handling apartment-related requests
+ * Provides methods for displaying, updating, deleting, and creating apartments
+ */
 @Controller
 @RequestMapping("/listings")
 public class ApartmentController {
@@ -24,7 +28,11 @@ public class ApartmentController {
 	@Autowired
 	private ApartmentInterface apartmentInterface;
 
-	//finds all apartments and displays them to the Listings view
+	/**
+	 * Retrieves all apartments and displays them in the Listings view
+	 * @param model the model to pass attributes to the view
+	 * @return the Listings view name
+	 */
 	@GetMapping("/getlistings")
 	public String listings(Model model) {
 		List<ApartmentModel> apartments = apartmentInterface.getAllApartments();
@@ -34,7 +42,12 @@ public class ApartmentController {
 		return "Listings";
 	}
 
-	// obtains the Apartment associated with the selected id, and passes it to the UpdateApartment view
+	/**
+	 * Retrieves the apartment details based on the provided id and displays the UpdateApartment view
+	 * @param m the model to pass attributes to the view
+	 * @param id the id of the apartment to update
+	 * @return the UpdateApartment view name
+	 */
 	@PostMapping("/update")
 	public String updateApartment(Model m, @RequestParam int id) {
 		ApartmentModel apartment = apartmentInterface.findApartmentById(id);
@@ -42,7 +55,20 @@ public class ApartmentController {
 		return "UpdateApartment";
 	}
 
-	// retrieves new inputs representing the Model's properties and sets that Model's existing properties to the new ones 
+	/**
+	 * Processes the updates for an apartment based on the provided form data
+	 * @param id the id of the apartment to update
+	 * @param name the updated name of the apartment
+	 * @param numBeds the updated number of beds
+	 * @param numBaths the updated number of baths
+	 * @param floorSpace the updated floor space
+	 * @param price the updated price
+	 * @param quantity the updated quantity
+	 * @param redirectAttributes used for adding redirect attributes
+	 * @param session the current user session
+	 * @param m the model to pass attributes to the view
+	 * @return redirect to the listings page
+	 */
 	@PostMapping("/update/do-update")
 	public String doUpdate(@RequestParam int id, @RequestParam(required = false) String name,
 			@RequestParam(required = false) Integer numBeds, @RequestParam(required = false) Integer numBaths,
@@ -74,8 +100,12 @@ public class ApartmentController {
 		return "redirect:/listings/getlistings";
 	}
 
-	// Post request (receiving from Listing.html) that handles when a user selects
-	// "Delete" on an apartment
+	/**
+	 * Displays the ConfirmDeleteApartment view when an apartment is selected for deletion
+	 * @param m the model to pass attributes to the view
+	 * @param id the id of the apartment to delete
+	 * @return the ConfirmDeleteApartment view name
+	 */
 	@PostMapping("/delete")
 	public String confirmDeleteApartment(Model m, @RequestParam int id) {
 		ApartmentModel apartment = apartmentInterface.findApartmentById(id); // passes the ApartmentModels's "id"
@@ -86,8 +116,14 @@ public class ApartmentController {
 		return "ConfirmDeleteApartment";
 	}
 
-	// Post request that handles the function of confirming the deletion of a
-	// selected apartment
+	/**
+	 * Confirms the deletion of the selected apartment and deletes it if confirmed
+	 * @param m the model to pass attributes to the view
+	 * @param confirm whether the user confirmed the deletion
+	 * @param id the id of the apartment to delete
+	 * @param redirectAttributes used for adding redirect attributes
+	 * @return redirect to the listings page
+	 */
 	@PostMapping("/delete/do-delete")
 	public String doDeleteApartment(Model m, @RequestParam boolean confirm, @RequestParam("apartmentId") int id,
 			RedirectAttributes redirectAttributes) {
@@ -102,12 +138,21 @@ public class ApartmentController {
 		return "redirect:/listings/getlistings";
 	}
 
+	/**
+	 * Displays the Create view for adding a new apartment
+	 * @return the Create view name
+	 */
 	@GetMapping("/create")
 	public String create() {
 		return "Create";
 	}
 
-	// creates a Model based on the input passed from the view gathered from the user, and calls the interface to create an instance based on the input
+	/**
+	 * Submits the new apartment details from the form and creates the apartment
+	 * @param apartment the apartment model containing user input
+	 * @param model the model to pass attributes to the view
+	 * @return redirect to the listings page
+	 */
 	@PostMapping("/create/submit")
 	public String submitProduct(@ModelAttribute ApartmentModel apartment, Model model) {
 		String msg = apartmentInterface.addApartment(apartment);

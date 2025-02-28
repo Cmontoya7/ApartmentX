@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gcu.apartmentx.business.ApartmentBusinessService;
 import com.gcu.apartmentx.models.ApartmentModel;
 
+/**
+ * REST API service for managing apartments
+ * Provides endpoints to fetch apartment data
+ */
 @RestController
 @RequestMapping("/api")
 public class ApartmentRestService {
@@ -21,6 +25,10 @@ public class ApartmentRestService {
 	@Autowired
 	ApartmentBusinessService service;
 
+	/**
+     * Retrieves a list of all apartments
+     * @return a ResponseEntity containing the list of apartments, or a 404 if no apartments are found
+     */
 	@GetMapping(value = "/getallapartments", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getApartments() {
 	    try {
@@ -34,6 +42,11 @@ public class ApartmentRestService {
 	    }
 	}
 	
+	/**
+     * Retrieves an apartment by its ID
+     * @param id the ID of the apartment to retrieve
+     * @return a ResponseEntity containing the apartment, or a 404 if not found
+     */
 	@GetMapping(value = "/getapartment/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getApartmentById(@PathVariable int id) {
         try {

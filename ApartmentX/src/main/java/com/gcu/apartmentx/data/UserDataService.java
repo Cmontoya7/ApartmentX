@@ -10,6 +10,10 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service class that handles data access logic for user entities
+ * Implements DataAccessInterface and UsersDataAccessInterface for CRUD operations on users
+ */
 @Service
 public class UserDataService implements DataAccessInterface<UserEntity>,UsersDataAccessInterface<UserEntity> {
     @Autowired
@@ -18,14 +22,22 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
     private DataSource source;
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * Constructs a new UserDataService with the provided userRepository and dataSource
+     * Initializes the JdbcTemplate to interact with the database
+     * @param userRepository the repository used to interact with the User data
+     * @param dataSource the data source used to initialize the JdbcTemplate
+     */
     public UserDataService(UserRepository userRepository, DataSource dataSource) {
         this.userRepository = userRepository;
         this.source = dataSource;
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
-    //uses the updated entity to update the current outdated properties associated with the new one
+    /**
+     * Retrieves all user entities from the database and returns them in a list
+     * @return a list of all users in the database
+     */
     @Override
     public List<UserEntity> findAll() {
         List<UserEntity> users = new ArrayList<>();
@@ -37,7 +49,11 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return users;
     }
 
-    //finds the Entity associated with the id passed to the method and returns that entity
+    /**
+     * Finds and returns a user entity by its ID
+     * @param id the ID of the user to be retrieved
+     * @return the UserEntity associated with the ID, or null if not found
+     */
     @Override
     public UserEntity findById(int id) {
         List<UserEntity> users = userRepository.findAll();
@@ -49,7 +65,11 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return null;
     }
 
-    //uses the entity to add it to the database
+    /**
+     * Adds a new user entity to the database
+     * @param user the user entity to be added
+     * @return true if the user was successfully added, false otherwise
+     */
     @Override
     public boolean create(UserEntity user) {
     	// Create the SQL query template
@@ -65,7 +85,11 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return true;
     }
 
-    //uses the updated entity to update the current outdated properties associated with the new one
+    /**
+     * Updates the properties of an existing user entity in the database
+     * @param user the updated user entity
+     * @return true if the user was successfully updated, false otherwise
+     */
     @Override
     public boolean update(UserEntity user) {
     	String sql = "UPDATE USERS SET USERNAME=?, EMAIL=?, PASSWORD=?, FIRST_NAME=?, LAST_NAME=? WHERE ID=?";
@@ -78,7 +102,11 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return true;
     }
 
-    //grab the id associated with the entity passed to this method to delete the item from the database using the below query
+    /**
+     * Deletes the specified user entity from the database using its ID
+     * @param user the user entity to be deleted
+     * @return true if the user was successfully deleted, false otherwise
+     */
     @Override
     public boolean delete(UserEntity user) {
     	int id = user.getId();
@@ -91,7 +119,11 @@ public class UserDataService implements DataAccessInterface<UserEntity>,UsersDat
         return true;
     }
 
-    //finds the Entity associated with the username passed to the method and returns that entity
+    /**
+     * Finds and returns a user entity by its username
+     * @param username the username of the user to be retrieved
+     * @return the UserEntity associated with the username, or null if not found
+     */
 	@Override
 	public UserEntity findByUsername(String username)
 	{

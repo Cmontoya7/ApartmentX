@@ -8,10 +8,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
+/**
+ * Service class for managing apartment business logic
+ * Handles CRUD operations for apartments
+ */
 public class ApartmentBusinessService implements ApartmentInterface {
     
-	//Spring bean which interacts with the repository. Handles database interaction
+	// Spring bean which interacts with the repository. Handles database interaction
     @Autowired
     private ApartmentDataService apartmentDataService;
     
@@ -22,7 +25,10 @@ public class ApartmentBusinessService implements ApartmentInterface {
    
     // --------------------- READ --------------------- //
     
-    //returns all apartment objects in the form of ApartmentModel's
+    /**
+     * Retrieves all apartments as ApartmentModel objects
+     * @return a list of ApartmentModel objects representing all apartments in the database
+     */
     @Override
     public List<ApartmentModel> getAllApartments() {
     	
@@ -38,7 +44,11 @@ public class ApartmentBusinessService implements ApartmentInterface {
     	return apartments;
     }
     
-    // returns a specific ApartmentModel associated with the id passed to the method
+    /**
+     * Retrieves a specific apartment by its ID
+     * @param id the ID of the apartment to retrieve
+     * @return an ApartmentModel representing the apartment with the specified ID
+     */
     @Override
     public ApartmentModel findApartmentById(int id) {
     	ApartmentEntity apartmentEntity = apartmentDataService.findById(id); // find the ApartmentEntity in the database associated with the id using the dataService layer,
@@ -53,7 +63,11 @@ public class ApartmentBusinessService implements ApartmentInterface {
     
     // --------------------- CREATE --------------------- //
     
-    // receives an ApartmentModel object, and creates an ApartmentEntity object using the Model's properties. The Entity is then stored in the database using the DataService's create() method
+    /**
+     * Adds a new apartment
+     * @param apartment an ApartmentModel object representing the apartment to be added
+     * @return a message indicating the result of the add operation
+     */
     @Override
     public String addApartment(ApartmentModel apartment) {
         ApartmentEntity apartmentEntity = new ApartmentEntity(apartment.getName(), apartment.getNumBeds(), apartment.getNumBaths(), apartment.getFloorSpace(), apartment.getPrice(), apartment.getQuantity());
@@ -63,7 +77,10 @@ public class ApartmentBusinessService implements ApartmentInterface {
     
     // --------------------- UPDATE --------------------- //
     
-    // receives an ApartmentModel
+    /**
+     * Updates an existing apartment
+     * @param apartmentModel an ApartmentModel object representing the apartment to be updated
+     */
     @Override
 	public void updateApartment(ApartmentModel apartmentModel) {
     	ApartmentEntity apartmentEntity = apartmentDataService.findById(apartmentModel.getId()); //grabs the ApartmentEntity that is associated with the Model's ID
@@ -81,7 +98,10 @@ public class ApartmentBusinessService implements ApartmentInterface {
     
     // --------------------- DELETE --------------------- //
     
-    // receives an id, which is used to delete the ApartmentEntity that is associated with the given id
+    /**
+     * Deletes an apartment by its ID
+     * @param id the ID of the apartment to delete
+     */
     @Override
     public void deleteApartment(int id) {
     	ApartmentEntity apartmentEntity = apartmentDataService.findById(id); //retrieves the Entity associated with the passed id 
@@ -89,12 +109,17 @@ public class ApartmentBusinessService implements ApartmentInterface {
     }
     
     // --------------------- LIFECYCLE METHODS --------------------- //
-
+    /**
+     * Initializes the apartment bean
+     */
     @Override
     public void init() {
         System.out.println("ApartmentBean init method call");
     }
-
+    
+    /**
+     * Destroys the apartment bean
+     */
     @Override
     public void destroy() {
         System.out.println("ApartmentBean destroy method call");

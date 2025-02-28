@@ -12,11 +12,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.gcu.apartmentx.data.UserDataService;
 import com.gcu.apartmentx.data.entities.UserEntity;
 
+/**
+ * Controller class responsible for handling login functionality
+ * Provides methods for displaying the login page and handling login success
+ */
 @Controller
 public class LoginController {
 	@Autowired
 	UserDataService userDataService;
 	
+	/**
+	 * Displays the login form view when accessing the /login URL
+	 * @param model the model to pass data to the view
+	 * @return the login view name
+	 */
 	@GetMapping("/login")
     public String display(Model model)
     {
@@ -25,6 +34,11 @@ public class LoginController {
     	return "login";
     }
 	
+	/**
+	 * Handles login success and sets session variables for the authenticated user
+	 * @param session the current HTTP session to store user data
+	 * @return the homepage view after successful login
+	 */
     @GetMapping("/login-success")
     public String loginSuccess(HttpSession session) {
         // Get the authenticated user

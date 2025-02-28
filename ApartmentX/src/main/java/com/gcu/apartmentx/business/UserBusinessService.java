@@ -15,6 +15,10 @@ import org.springframework.stereotype.Service;
 import com.gcu.apartmentx.data.UserDataService;
 import com.gcu.apartmentx.data.entities.UserEntity;
 
+/**
+ * Service class for managing user details and authentication logic
+ * Implements Spring Security's UserDetailsService interface
+ */
 @Service
 public class UserBusinessService implements UserDetailsService
 {
@@ -22,7 +26,12 @@ public class UserBusinessService implements UserDetailsService
 	@Autowired
 	UserDataService service;
 	
-	
+	/**
+	 * Loads user details by username for authentication purposes
+	 * @param username the username of the user
+	 * @return a UserDetails object containing user information and roles
+	 * @throws UsernameNotFoundException if the user is not found in the system
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
 	{
