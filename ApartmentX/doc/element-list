@@ -1,0 +1,9 @@
+com.gcu.apartmentx
+com.gcu.apartmentx.api
+com.gcu.apartmentx.business
+com.gcu.apartmentx.controllers
+com.gcu.apartmentx.data
+com.gcu.apartmentx.data.entities
+com.gcu.apartmentx.data.mappers
+com.gcu.apartmentx.data.repositories
+com.gcu.apartmentx.models
